@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - Ignite Movement Belize</title>
+    <link href="https://fonts.googleapis.com/css2?family=Radley:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared-styles.css">
+    <style>
+        /* Page-specific styles */
+        .hero {
+            padding: 150px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #fffbf4 0%, #f9f5e8 50%, #fffbf4 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(214, 179, 39, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(214, 179, 39, 0.08) 0%, transparent 50%);
+            opacity: 1;
+        }
+
+        .hero-content {
+            z-index: 2;
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            font-family: 'Radley', serif;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #d6b327, #b8941a, #8a7015);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.8;
+            line-height: 1.6;
+            color: #3e3b39;
+        }
+
+        /* Photo Banner */
+        .photo-banner {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 0;
+            margin-bottom: 0;
+        }
+
+        .photo-banner img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* Donate Section */
+        .donate-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #fffbf4 0%, #f9f5e8 100%);
+        }
+
+        .donate-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .donate-card {
+            background: rgba(255, 251, 244, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 2px solid rgba(214, 179, 39, 0.2);
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 40px rgba(214, 179, 39, 0.1);
+        }
+
+        .donate-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(214, 179, 39, 0.2);
+            border-color: rgba(214, 179, 39, 0.4);
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Radley', serif;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #d6b327, #b8941a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0.8;
+            margin-bottom: 25px;
+            color: #3e3b39;
+        }
+
+        .donate-button {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(45deg, #d6b327, #b8941a);
+            color: #fffbf4;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(214, 179, 39, 0.3);
+        }
+
+        .donate-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(214, 179, 39, 0.4);
+        }
+
+        /* Impact Section */
+        .impact-section {
+            padding: 80px 0;
+            background: #fffbf4;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .impact-item {
+            padding: 30px;
+        }
+
+        .impact-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            font-family: 'Radley', serif;
+            background: linear-gradient(45deg, #d6b327, #b8941a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .impact-label {
+            font-size: 1.1rem;
+            color: #3e3b39;
+            opacity: 0.8;
+        }
+
+        /* Photo Gallery Strip */
+        .photo-strip {
+            padding: 60px 0;
+            background: linear-gradient(135deg, rgba(214, 179, 39, 0.05), rgba(184, 148, 26, 0.08));
+        }
+
+        .photo-strip-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .photo-strip-grid img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(214, 179, 39, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-strip-grid img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Tax Info Section */
+        .tax-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #fffbf4 0%, #f9f5e8 100%);
+        }
+
+        .tax-card {
+            background: rgba(255, 251, 244, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 50px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            border: 2px solid rgba(214, 179, 39, 0.2);
+            box-shadow: 0 10px 40px rgba(214, 179, 39, 0.1);
+        }
+
+        .tax-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Radley', serif;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #d6b327, #b8941a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tax-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #3e3b39;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .check-info {
+            background: rgba(214, 179, 39, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .check-info h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #3e3b39;
+            margin-bottom: 15px;
+        }
+
+        .check-info p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .photo-banner {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .photo-banner img {
+                height: 150px;
+            }
+
+            .donate-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-strip-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .photo-strip-grid img {
+                height: 200px;
+            }
+
+            .tax-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Navigation (loaded from navigation.js) -->
+    <div id="header-placeholder"></div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Support the Movement</h1>
+            <p>Your generosity helps us ignite a generation for Jesus in Belize and beyond.</p>
+        </div>
+    </section>
+
+    <!-- Photo Banner -->
+    <div class="photo-banner">
+        <img src="photo7.jpg" alt="Ignite Movement" />
+        <img src="photo8.jpg" alt="Ignite Movement" />
+        <img src="photo1.jpg" alt="Ignite Movement" />
+        <img src="photo2.jpg" alt="Ignite Movement" />
+    </div>
+
+    <!-- Donate Options Section -->
+    <section class="donate-section">
+        <div class="container">
+            <h2 class="section-title">Ways to Give</h2>
+            <p class="section-subtitle">Every gift makes a difference. Choose how you'd like to support the mission.</p>
+            
+            <div class="donate-grid">
+                <div class="donate-card">
+                    <span class="card-icon">💝</span>
+                    <h3 class="card-title">One-Time Gift</h3>
+                    <p class="card-text">Make a single donation to support our current initiatives and help launch new programs reaching Gen-Z across Belize.</p>
+                    <a href="https://www.paypal.com/donate/?hosted_button_id=FMMV25J83A7AS" class="donate-button" target="_blank">Donate Now</a>
+                </div>
+                
+                <div class="donate-card">
+                    <span class="card-icon">🔄</span>
+                    <h3 class="card-title">Monthly Partnership</h3>
+                    <p class="card-text">Become a monthly partner and provide ongoing support for our youth leadership development and worship nights.</p>
+                    <a href="https://www.paypal.com/donate/?hosted_button_id=FMMV25J83A7AS" class="donate-button" target="_blank">Give Monthly</a>
+                </div>
+                
+                <div class="donate-card">
+                    <span class="card-icon">🎓</span>
+                    <h3 class="card-title">Sponsor a Leader</h3>
+                    <p class="card-text">Sponsor a young person's full participation in our leadership bootcamp and mentorship program.</p>
+                    <a href="https://www.paypal.com/donate/?hosted_button_id=FMMV25J83A7AS" class="donate-button" target="_blank">Sponsor Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact-section">
+        <div class="container">
+            <h2 class="section-title">Your Impact</h2>
+            <p class="section-subtitle">See how your generosity is making a difference in the lives of young people.</p>
+            
+            <div class="impact-grid">
+                <div class="impact-item">
+                    <div class="impact-number">🔥</div>
+                    <p class="impact-label">Burn Night Worship Gatherings</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-number">🚀</div>
+                    <p class="impact-label">Launch Leadership Programs</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-number">⚡</div>
+                    <p class="impact-label">Ignite Outreach Events</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-number">❤️</div>
+                    <p class="impact-label">Lives Transformed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Strip -->
+    <section class="photo-strip">
+        <div class="container">
+            <div class="photo-strip-grid">
+                <img src="photo9.jpg" alt="Ignite Movement Belize" />
+                <img src="photo10.jpg" alt="Ignite Movement Belize" />
+                <img src="photo11.jpg" alt="Ignite Movement Belize" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Tax Info Section -->
+    <section class="tax-section">
+        <div class="container">
+            <div class="tax-card">
+                <h3>💰 Tax Deductible Giving</h3>
+                <p>Ignite Movement is a 501(c)(3) nonprofit organization. Your gift is tax deductible to the fullest extent allowed by law.</p>
+                
+                <div class="check-info">
+                    <h4>Prefer to send a check?</h4>
+                    <p>Please make them out to: <strong>'Ignite Movement'</strong> and put <strong>'David Heavener'</strong> in the memo<br><br>
+                    Send them to:<br>
+                    <strong>First Savings Bank</strong><br>
+                    501 E Lewis And Clark Pkwy<br>
+                    Clarksville, IN<br>
+                    47129</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (loaded from navigation.js) -->
+    <div id="footer-placeholder"></div>
+
+    <script src="navigation.js"></script>
+</body>
+</html>
