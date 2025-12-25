@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statement of Faith - Ignite Movement Belize</title>
+    <link href="https://fonts.googleapis.com/css2?family=Radley:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared-styles.css">
+    <style>
+        /* Page-specific styles */
+        .hero {
+            padding: 150px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #fffbf4 0%, #f9f5e8 50%, #fffbf4 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(214, 179, 39, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(214, 179, 39, 0.08) 0%, transparent 50%);
+            opacity: 1;
+        }
+
+        .hero-content {
+            z-index: 2;
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            font-family: 'Radley', serif;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #d6b327, #b8941a, #8a7015);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.8;
+            line-height: 1.6;
+            color: #3e3b39;
+        }
+
+        /* About Navigation */
+        .about-nav {
+            padding: 40px 0;
+            background: #fffbf4;
+            border-bottom: 1px solid rgba(214, 179, 39, 0.2);
+        }
+
+        .about-nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .about-nav-links a {
+            color: #3e3b39;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 10px 25px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .about-nav-links a:hover,
+        .about-nav-links a.active {
+            background: linear-gradient(45deg, #d6b327, #b8941a);
+            color: #fffbf4;
+        }
+
+        /* Statement Section */
+        .statement-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #fffbf4 0%, #f9f5e8 100%);
+        }
+
+        .belief-card {
+            background: rgba(255, 251, 244, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(214, 179, 39, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(214, 179, 39, 0.1);
+        }
+
+        .belief-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(214, 179, 39, 0.15);
+            border-color: rgba(214, 179, 39, 0.4);
+        }
+
+        .belief-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Radley', serif;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #d6b327, #b8941a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .belief-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #3e3b39;
+            opacity: 0.9;
+        }
+
+        .scripture-ref {
+            margin-top: 15px;
+            font-size: 0.95rem;
+            color: #b8941a;
+            font-style: italic;
+        }
+
+        /* Truths from Scripture Section */
+        .truths-section {
+            padding: 80px 0;
+            background: #fffbf4;
+        }
+
+        /* Expandable Sections */
+        .expandable-section {
+            margin-bottom: 15px;
+        }
+
+        .expandable-header {
+            background: rgba(214, 179, 39, 0.1);
+            padding: 20px 25px;
+            border-radius: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .expandable-header:hover {
+            background: rgba(214, 179, 39, 0.2);
+            border-color: rgba(214, 179, 39, 0.3);
+        }
+
+        .expandable-header h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #3e3b39;
+        }
+
+        .expandable-header .icon {
+            font-size: 1.5rem;
+            color: #d6b327;
+            transition: transform 0.3s ease;
+        }
+
+        .expandable-header.active .icon {
+            transform: rotate(45deg);
+        }
+
+        .expandable-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 25px;
+        }
+
+        .expandable-content.active {
+            max-height: 1000px;
+            padding: 20px 25px;
+        }
+
+        .expandable-content p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #3e3b39;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .about-nav-links {
+                gap: 15px;
+            }
+
+            .about-nav-links a {
+                font-size: 1rem;
+                padding: 8px 20px;
+            }
+
+            .belief-card {
+                padding: 25px;
+            }
+
+            .belief-card h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Navigation (loaded from navigation.js) -->
+    <div id="header-placeholder"></div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Statement of Faith</h1>
+            <p>At Ignite Movement Belize, we hold to these foundational beliefs.</p>
+        </div>
+    </section>
+
+    <!-- About Navigation -->
+    <div class="about-nav">
+        <div class="container">
+            <div class="about-nav-links">
+                <a href="about-us.html">About Us</a>
+                <a href="statement-of-faith.html" class="active">Statement of Faith</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core Beliefs Section -->
+    <section class="statement-section">
+        <div class="container">
+            <h2 class="section-title">Our Beliefs</h2>
+            
+            <div class="belief-card">
+                <h3>We believe Jesus is God.</h3>
+                <p>Jesus Christ is eternally God. He was together with the Father and the Holy Spirit from the beginning, and through Him all things were made. For man's redemption, He left heaven and became incarnate by the Holy Spirit through the virgin Mary; henceforth, He is forever one Christ with two natures—God and man—in one person.</p>
+                <p class="scripture-ref">John 1:1-14 | Romans 1:1-4 | John 3:16 | Matthew 28:18-20 | John 14:5-14 | John 10:22-39</p>
+            </div>
+
+            <div class="belief-card">
+                <h3>We believe The Bible is the Word of God.</h3>
+                <p>We affirm that the Bible, containing the Old and New Testaments, is alone the only infallible, inspired Word of God, and that its authority is ultimate, final, and eternal. It cannot be added to, subtracted from, or superseded in any regard. The Bible is the source of all doctrine, instruction, correction, and reproof. It contains all that is needed for guidance in godliness and practical Christian conduct.</p>
+                <p class="scripture-ref">2 Timothy 3:16 | Hebrews 4:12 | 1 Peter 1:23-25 | 2 Peter 1:19-21</p>
+            </div>
+
+            <div class="belief-card">
+                <h3>We believe in the Person, gifts and move of the Holy Spirit.</h3>
+                <p>The Holy Spirit is God, the Lord and giver of life, who was active in the Old Testament and given to the Church in fullness at Pentecost. He empowers the saints for service and witness, cleanses man from the old nature and conforms us to the image of Christ. The baptism in the Holy Spirit, subsequent to conversion, releases the fullness of the Spirit and is evidenced by the fruits and gifts of the Holy Spirit.</p>
+                <p class="scripture-ref">1 Corinthians 12:1-11 | Luke 11:13 | John 7:37-39, 14:16-17, 16:7-14 | Acts 2:1-18</p>
+            </div>
+
+            <div class="belief-card">
+                <h3>We believe in biblical marriage.</h3>
+                <p>We believe in unconditional love for everyone while remaining unwavering in our loyalty to God's Holy word. We believe that because God our Creator established marriage as a sacred institution between one man and one woman, the idea that marriage is a covenant only between one man and one woman has been the traditional definition of marriage for all of human history. Because of the longstanding importance of this definition of marriage to humans and their relationships and communities, and most importantly the fact that God has ordained that marriage be between one man and one woman, as clearly conveyed in God's inerrant Scriptures.</p>
+                <p class="scripture-ref">Genesis 2:18-25 | Ephesians 5:22-33 | Matthew 19:4-6</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Truths from Scripture Section -->
+    <section class="truths-section">
+        <div class="container">
+            <h2 class="section-title">Truths from Scripture</h2>
+            <p class="section-subtitle">Explore our detailed beliefs on key doctrines of the Christian faith.</p>
+
+            <div class="expandable-section">
+                <div class="expandable-header" onclick="toggleExpand(this)">
+                    <h4>God the Father</h4>
+                    <span class="icon">+</span>
+                </div>
+                <div class="expandable-content">
+                    <p>God the Father is the creator and sustainer of all things, and He created the universe in love. He created man in His own image for fellowship and called man back to Himself through Christ after the rebellion and fall of man.</p>
+                    <p class="scripture-ref">Genesis 1:1 | John 3:16 | Romans 8:14-17 | Ephesians 1:3-6</p>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expandable-header" onclick="toggleExpand(this)">
+                    <h4>The Son Jesus</h4>
+                    <span class="icon">+</span>
+                </div>
+                <div class="expandable-content">
+                    <p>Jesus Christ is eternally God. He was together with the Father and the Holy Spirit from the beginning, and through Him all things were made. For man's redemption, He left heaven and became incarnate by the Holy Spirit through the virgin Mary; henceforth, He is forever one Christ with two natures—God and man—in one person.</p>
+                    <p class="scripture-ref">John 1:1-14 | Romans 1:1-4 | John 3:16 | Matthew 28:18-20 | John 14:5-14 | John 10:22-39 | Galatians 4:1-7 | Hebrews 4:14-16 | Luke 1:26-38 | Matthew 1:18-24 | 1 Timothy 2:5-6</p>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expandable-header" onclick="toggleExpand(this)">
+                    <h4>The Holy Spirit</h4>
+                    <span class="icon">+</span>
+                </div>
+                <div class="expandable-content">
+                    <p>The Holy Spirit is God, the Lord and giver of life, who was active in the Old Testament and given to the Church in fullness at Pentecost. He empowers the saints for service and witness, cleanses man from the old nature and conforms us to the image of Christ. The baptism in the Holy Spirit, subsequent to conversion, releases the fullness of the Spirit and is evidenced by the fruits and gifts of the Holy Spirit.</p>
+                    <p class="scripture-ref">1 Corinthians 12:1-11 | Luke 11:13 | John 7:37-39, 14:16-17, 16:7-14 | Acts 2:1-18</p>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expandable-header" onclick="toggleExpand(this)">
+                    <h4>The Holy Scriptures (Bible)</h4>
+                    <span class="icon">+</span>
+                </div>
+                <div class="expandable-content">
+                    <p>We affirm that the Bible, containing the Old and New Testaments, is alone the only infallible, inspired Word of God, and that its authority is ultimate, final, and eternal. It cannot be added to, subtracted from, or superseded in any regard. The Bible is the source of all doctrine, instruction, correction, and reproof. It contains all that is needed for guidance in godliness and practical Christian conduct.</p>
+                    <p class="scripture-ref">2 Timothy 3:16 | Hebrews 4:12 | 1 Peter 1:23-25 | 2 Peter 1:19-21</p>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expandable-header" onclick="toggleExpand(this)">
+                    <h4>The Atonement</h4>
+                    <span class="icon">+</span>
+                </div>
+                <div class="expandable-content">
+                    <p>Christ's vicarious death on the cross paid the penalty for the sins of the whole world, but its benefits are only applicable to those who receive Jesus as their personal Savior. Healing—body, soul, and spirit—and all of God's provisions for His saints, are provided for in the atonement, but these must be appropriated.</p>
+                    <p class="scripture-ref">Acts 4:12 | Romans 4:1-9, 5:1-11 | Ephesians 1:3-14</p>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expandable-header" onclick="toggleExpand(this)">
+                    <h4>The Fall of Man</h4>
+                    <span class="icon">+</span>
+                </div>
+                <div class="expandable-content">
+                    <p>We believe that man, in his natural state, is a sinner—lost, undone, without hope, and without God. As God's most precious creation, God gave his very best for each and every human to ever be born, but it is up to each individual to receive Him.</p>
+                    <p class="scripture-ref">Romans 3:19-23 | Galatians 3:22 | Ephesians 2:1-2, 12</p>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expandable-header" onclick="toggleExpand(this)">
+                    <h4>Baptism of the Holy Spirit</h4>
+                    <span class="icon">+</span>
+                </div>
+                <div class="expandable-content">
+                    <p>We believe the baptism in the Holy Spirit, with the primary evidence of speaking in other tongues as the Spirit gives utterance, is for all believers as promised by John the Baptist, Jesus, and Peter. The fulfillment of this promise was witnessed by early disciples of Christ and operates in many present-day disciples of Jesus Christ.</p>
+                    <p class="scripture-ref">1 Corinthians 14 | Matthew 3:11 | Acts 1:4-8 | Acts 2:38-41 | Acts 2:4, 10:44-47, 19:1-6</p>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expandable-header" onclick="toggleExpand(this)">
+                    <h4>Salvation</h4>
+                    <span class="icon">+</span>
+                </div>
+                <div class="expandable-content">
+                    <p>The Word of God declares clearly that salvation is a free gift of God, based on the merits of the death of His Son, and is appropriated by faith. Salvation is effected by personal repentance, belief in the Lord Jesus (justification), and personal acceptance of Him into one's life as Lord and Savior (regeneration). The new life in Christ includes the privileges of adoption and inheritance in the kingdom of God's beloved Son. Salvation is an act of free will in response to God's personal love for mankind.</p>
+                    <p class="scripture-ref">Acts 4:12 | Romans 4:1-9, 5:1-11 | Ephesians 1:3-14</p>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expandable-header" onclick="toggleExpand(this)">
+                    <h4>The Christian Life</h4>
+                    <span class="icon">+</span>
+                </div>
+                <div class="expandable-content">
+                    <p>We believe that the Scriptures portray the life of the saint in this world to be one of balance between what is imputed to us as Christians and what is imparted to us according to our faith and maturity. The Christian life is filled with trials, tests, and warfare against a spiritual enemy. For those abiding in Christ until their deaths or His return, the promises of eternal blessing in the presence of God are assured. To remain faithful through all circumstances of life requires dependence upon the Holy Spirit and a willingness to die to personal desires and passions.</p>
+                    <p class="scripture-ref">Matthew 7:21; 16:27 | Romans 12:1-3 | 2 Corinthians 6:17 | Galatians 6:14 | Ephesians 5:11 | Colossians 3:17</p>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expandable-header" onclick="toggleExpand(this)">
+                    <h4>The Church</h4>
+                    <span class="icon">+</span>
+                </div>
+                <div class="expandable-content">
+                    <p>The goal of the Church is to fulfill the Great Commission (Matthew 28:19)—make disciples of all nations and to present the saints complete in Christ. The five-fold ministry of Ephesians 4 governs the Church, along with the offices of elder and deacon. It is essential to the life of the Church that scriptural patterns of discipline are practiced and that oversight for Church discipline, individual and corporate, is exercised by the leadership of the Church.</p>
+                    <p class="scripture-ref">Acts 10:34-35 | 1 Corinthians 12:12-31 | Matthew 16:18, 28:19-20 | Ephesians 4:15; 5:22-32 | 1 Timothy 3:15</p>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expandable-header" onclick="toggleExpand(this)">
+                    <h4>Divine Healing</h4>
+                    <span class="icon">+</span>
+                </div>
+                <div class="expandable-content">
+                    <p>We believe God has used doctors, medicines, and other natural means as channels of healing; however, we also believe divine healing is provided for believers in the atonement made by Jesus' blood shed on the cross. We believe divine healing may be received by the laying on of hands by the elders, by the prayer of an anointed person gifted by the Holy Spirit for healing the sick, or by a direct act of receiving this provision by faith.</p>
+                    <p class="scripture-ref">Isaiah 53:5 | 1 Peter 2:24 | James 5:14-16 | 1 Corinthians 12:9 | Mark 11:23-24</p>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expandable-header" onclick="toggleExpand(this)">
+                    <h4>Baptism and Communion</h4>
+                    <span class="icon">+</span>
+                </div>
+                <div class="expandable-content">
+                    <p>The Word of God enjoins on the Church two perpetual ordinances of the Lord Jesus Christ. The first, baptism, is the outward sign of what God has already done in the individual's life and is a testimony to all that the person now belongs to Jesus. It is identification with Jesus and is effected in the name of the Father, the Son, and the Holy Spirit. The Lord's Supper is a commemoration of the death of the Lord and is done in remembrance of Him until He comes again; it is a sign of our participation in Him. Both institutions are restricted to those who are believers.</p>
+                    <p class="scripture-ref">Matthew 28:19 | 1 Corinthians 11:24-26</p>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expandable-header" onclick="toggleExpand(this)">
+                    <h4>Eschatology (End Times)</h4>
+                    <span class="icon">+</span>
+                </div>
+                <div class="expandable-content">
+                    <p>We affirm the bodily, personal, second coming of the Lord Jesus Christ, the resurrection of the saints, the millennium, and the final judgment. The final judgment will determine the eternal status of both the saints and the unbelievers, based on their relationship with God through Jesus Christ. We affirm the final state of the new heavens and the new earth.</p>
+                    <p class="scripture-ref">Matthew 23:39 | Romans 11:15 | Acts 1:10-11 | 1 Thessalonians 4:13-18 | 2 Thessalonians 1:7-10 | James 5:8 | Revelation 1:7 | John 14:2-3</p>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expandable-header" onclick="toggleExpand(this)">
+                    <h4>Heaven and Hell</h4>
+                    <span class="icon">+</span>
+                </div>
+                <div class="expandable-content">
+                    <p>We believe Scripture clearly speaks on the doctrines of eternal punishment for the unsaved and eternal salvation and complete happiness for the saved—a literal hell for the unsaved and literal Heaven for the saved.</p>
+                    <p class="scripture-ref">Matthew 25:34, 41, 46 | Luke 16:19-31 | John 14:1-3 | Revelation 20:11-15</p>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expandable-header" onclick="toggleExpand(this)">
+                    <h4>Marriage</h4>
+                    <span class="icon">+</span>
+                </div>
+                <div class="expandable-content">
+                    <p>We believe that because God our Creator established marriage as a sacred institution between one man and one woman, the idea that marriage is a covenant only between one man and one woman has been the traditional definition of marriage for all of human history. Because of the longstanding importance of this definition of marriage to humans and their relationships and communities, and most importantly the fact that God has ordained that marriage be between one man and one woman, as clearly conveyed in God's inerrant Scriptures, including for example in Matthew 19:4-6 where in speaking about marriage Jesus referred to the fact that "he which made them at the beginning made them male and female."</p>
+                    <p class="scripture-ref">Genesis 2:18-25 | Ephesians 5:22-33 | 1 Corinthians 7:39-40 | Romans 7:1-3 | Genesis 1:26-31 | 1 Corinthians 7:1-7</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (loaded from navigation.js) -->
+    <div id="footer-placeholder"></div>
+
+    <script src="navigation.js"></script>
+    <script>
+        // Expandable sections functionality
+        function toggleExpand(element) {
+            const content = element.nextElementSibling;
+            element.classList.toggle('active');
+            content.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
