@@ -1,7 +1,17 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ignite Belize</title><meta name="description" content="A Gen-Z community of burning ones in Belize."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&family=Caveat:wght@700&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ignite Belize</title>
+<meta name="description" content="A Gen-Z community of burning ones in Belize.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&family=Caveat:wght@700&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --black:#09080a;--black2:#111013;--black3:#1a1820;--cream:#f1ece1;--cream2:#e8e1d2;--offwhite:#f5f0e8;--red:#e8430a;--red2:#d2511a;--orange:#f06423;--muted:#6b6356;--border:rgba(241,236,225,.1);--border2:rgba(241,236,225,.18);
+  --black:#09080a;--black2:#111013;--black3:#1a1820;--cream:#f1ece1;--cream2:#e8e1d2;--offwhite:#f5f0e8;
+  --red:#e8430a;--red2:#d2511a;--orange:#f06423;--muted:#6b6356;--border:rgba(241,236,225,.1);
   --d:'Anton',sans-serif;--b:'DM Sans',system-ui,sans-serif;--m:'JetBrains Mono',monospace;--h:'Caveat',cursive;--bb:'Bebas Neue',sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -14,7 +24,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 32px;background:rgba(9,8,10,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;transition:padding .3s}
 nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 .nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-.nav-brand-mark{width:36px;height:36px;background:var(--red);display:flex;align-items:center;justify-content:center;font-family:var(--d);font-size:1.5rem;color:#fff;line-height:1}
+.nav-brand-mark{width:36px;height:36px;background:var(--red);display:flex;align-items:center;justify-content:center;font-family:var(--d);font-size:1.5rem;color:#fff;line-height:1;flex-shrink:0}
 .nav-brand-text strong{font-family:var(--d);font-size:1.05rem;text-transform:uppercase;letter-spacing:.04em;color:var(--offwhite)}
 .nav-links{display:flex;list-style:none;gap:2px;align-items:center}
 .nav-links a{font-family:var(--m);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,240,232,.55);text-decoration:none;padding:8px 14px;transition:color .2s}
@@ -23,9 +33,9 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 .nav-links a.cta:hover{background:var(--orange)}
 .nav-toggle{display:none;background:0;border:none;cursor:pointer;width:36px;height:28px;flex-direction:column;justify-content:space-between}
 .nav-toggle span{display:block;height:2px;background:var(--offwhite);transition:transform .3s,opacity .3s}
-.nav-toggle.active span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.nav-toggle.active span:nth-child(1){transform:translateY(13px) rotate(45deg)}
 .nav-toggle.active span:nth-child(2){opacity:0}
-.nav-toggle.active span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+.nav-toggle.active span:nth-child(3){transform:translateY(-13px) rotate(-45deg)}
 .mobile-menu{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--black);z-index:999;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:20px;transform:translateY(-100%);transition:transform .4s;padding:80px 32px}
 .mobile-menu.active{transform:translateY(0)}
 .mobile-menu a{font-family:var(--d);font-size:2.8rem;text-transform:uppercase;color:var(--offwhite);text-decoration:none;transition:color .2s}
@@ -33,31 +43,35 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 @media(max-width:900px){.nav-links{display:none}.nav-toggle{display:flex}}
 
 /* HERO */
-.hero-section{width:100vw;height:100vh;display:grid;grid-template-columns:55% 45%;overflow:hidden;background:var(--black)}
+.hero-section{width:100vw;min-height:100vh;display:grid;grid-template-columns:55% 45%;overflow:hidden;background:var(--black)}
 .film{position:relative;overflow:hidden}
 .film::before,.film::after{content:'';position:absolute;left:0;right:0;height:7%;background:var(--black);z-index:3}
 .film::before{top:0}.film::after{bottom:0}
 .film-fade{position:absolute;right:0;top:0;bottom:0;width:120px;z-index:4;background:linear-gradient(to right,transparent,var(--black))}
-.film img{width:100%;height:100%;object-fit:cover;object-position:center 25%;filter:grayscale(.65) sepia(.12) contrast(1.1) brightness(.55);display:block}
-.film-verse{position:absolute;bottom:12%;left:28px;z-index:5;font-style:italic;font-size:.95rem;font-weight:300;color:rgba(245,240,232,.65);line-height:1.6;max-width:260px;text-shadow:0 1px 12px rgba(0,0,0,.8);font-family:var(--b)}
+.film img{width:100%;height:100%;object-fit:cover;object-position:35% 35%;filter:grayscale(.65) sepia(.12) contrast(1.1) brightness(.55);display:block}
+.film-verse{position:absolute;bottom:12%;left:28px;z-index:5;font-style:italic;font-size:.95rem;font-weight:300;color:rgba(245,240,232,.65);line-height:1.6;max-width:260px;text-shadow:0 1px 12px rgba(0,0,0,.8)}
 .film-verse b{display:block;margin-top:6px;font-family:var(--m);font-size:.48rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,240,232,.3);font-weight:400;font-style:normal}
 .hero-text{position:relative;display:flex;flex-direction:column;justify-content:center;padding:0 56px 0 52px;background:var(--black);overflow:hidden}
 .hero-text::before{content:'';position:absolute;left:0;top:10%;bottom:10%;width:3px;background:var(--red)}
 .hero-h1{font-family:var(--bb);font-size:clamp(5.5rem,9vw,10.5rem);line-height:.87;text-transform:uppercase;margin-bottom:36px;color:var(--offwhite)}
 .hero-h1 .hl{color:var(--red)}
-.hero-lead{font-size:1rem;font-weight:300;color:rgba(245,240,232,.6);line-height:1.5;max-width:340px;margin-bottom:50px;font-family:var(--b)}
+.hero-lead{font-size:1rem;font-weight:300;color:rgba(245,240,232,.6);line-height:1.5;max-width:340px;margin-bottom:50px}
 .hero-lead .rotating-wrap{display:inline-block;position:relative;height:1.4em;overflow:hidden;vertical-align:bottom;min-width:200px}
-.hero-lead .rotating-wrap .word{position:absolute;left:0;top:0;width:100%;opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease;font-weight:600;color:var(--orange)}
+.hero-lead .rotating-wrap .word{position:absolute;left:0;top:0;width:100%;opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s;font-weight:600;color:var(--orange)}
 .hero-lead .rotating-wrap .word.active{opacity:1;transform:translateY(0)}
 .hero-btns{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
 .hero-btn{display:inline-flex;align-items:center;gap:12px;background:var(--orange);color:#fff;padding:14px 30px;font-family:var(--m);font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;border:2px solid var(--orange);transition:background .2s,transform .18s;text-decoration:none}
 .hero-btn:hover{background:#ff7a38;border-color:#ff7a38;transform:translateY(-2px)}
 .hero-ghost{font-family:var(--m);font-size:.57rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,232,.38);border-bottom:1px solid rgba(245,240,232,.16);padding-bottom:2px;text-decoration:none}
 .hero-ghost:hover{color:var(--offwhite)}
+
+/* MOBILE HERO */
 @media(max-width:860px){
-  .hero-section{grid-template-columns:1fr;height:auto}
-  .film{height:60vw;min-height:260px}
+  .hero-section{grid-template-columns:1fr;min-height:auto}
+  .film{height:70vw;min-height:280px;max-height:420px}
+  .film img{object-position:30% 30%}
   .hero-text{padding:44px 24px 80px}
+  .hero-text::before{top:0;bottom:0;left:0;right:0;width:100%;height:3px;top:auto;bottom:0}
 }
 
 /* BAND */
@@ -74,14 +88,12 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 .pillars-title{font-family:var(--d);font-weight:900;font-size:clamp(3rem,7vw,5.5rem);line-height:.9;text-transform:uppercase;color:var(--offwhite);margin-bottom:8px}
 .pillars-title .accent{color:var(--red)}
 .three-words{display:flex;justify-content:center;gap:clamp(24px,4vw,64px);margin-top:24px;flex-wrap:wrap}
-.three-word{font-family:var(--h);font-size:clamp(2rem,4vw,3.2rem);color:rgba(241,236,225,.35);position:relative;transition:color .3s}
+.three-word{font-family:var(--h);font-size:clamp(2rem,4vw,3.2rem);position:relative;transition:color .3s}
 .three-word.w1{transform:rotate(-2deg);color:rgba(232,67,10,.7)}
 .three-word.w2{transform:rotate(1deg);color:rgba(232,67,10,.5)}
 .three-word.w3{transform:rotate(-1.5deg);color:rgba(232,67,10,.35)}
 .pillars-spirit-verse{font-family:var(--m);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,225,.35);text-align:center;margin-top:20px;line-height:1.7}
 .pillars-spirit-verse em{font-style:italic;font-family:var(--b);font-size:.85rem;color:rgba(241,236,225,.5);letter-spacing:0;text-transform:none;display:block;margin-bottom:4px}
-
-/* Pillars grid — larger photos, different layout */
 .pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
 .pillar{background:var(--black3);overflow:hidden;display:flex;flex-direction:column;position:relative;transition:transform .35s}
 .pillar:hover{transform:translateY(-4px)}
@@ -95,12 +107,15 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 .pillar-desc{font-size:.88rem;color:rgba(241,236,225,.55);line-height:1.6}
 .pillar-link{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-family:var(--m);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(240,100,35,.3);padding-bottom:2px;transition:color .2s,border-color .2s}
 .pillar-link:hover{color:#fff;border-color:rgba(255,255,255,.3)}
-@media(max-width:900px){.pillars-grid{grid-template-columns:1fr}.pillar-img{aspect-ratio:4/3}}
+@media(max-width:900px){
+  .pillars-grid{grid-template-columns:1fr}
+  .pillar-img{aspect-ratio:4/3}
+  .pillars{padding:80px 0 60px}
+}
 
 /* ABOUT */
 .about{background:var(--cream);padding:150px 0}
 .about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:90px;align-items:center}
-@media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:50px}}
 .about-tag{font-family:var(--m);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--red2);margin-bottom:20px;display:inline-flex;align-items:center;gap:10px}
 .about-tag::before{content:'//'}
 .about-title{font-family:var(--d);font-size:clamp(2.8rem,6vw,5rem);line-height:.9;text-transform:uppercase;color:#14110d;margin-bottom:12px}
@@ -117,12 +132,14 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 .founder-meta{margin-top:24px}
 .founder-name{font-family:var(--d);font-size:1.7rem;text-transform:uppercase;color:#14110d}
 .founder-role{font-family:var(--m);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--red2);margin-top:5px}
+@media(max-width:900px){
+  .about-grid{grid-template-columns:1fr;gap:50px}
+  .about{padding:80px 0}
+}
 
 /* DONATE */
 .donate{background:var(--cream2);padding:130px 0;border-top:1px solid rgba(20,17,13,.1)}
-.donate-inner{width:100%}
 .donate-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-@media(max-width:900px){.donate-grid{grid-template-columns:1fr;gap:40px}}
 .donate-tag{font-family:var(--m);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--red2);margin-bottom:20px;display:inline-flex;align-items:center;gap:10px}
 .donate-tag::before{content:'//'}
 .donate-title{font-family:var(--d);font-size:clamp(2.8rem,6vw,5rem);line-height:.9;text-transform:uppercase;color:#14110d;margin-bottom:14px}
@@ -137,6 +154,11 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 .donate-501 strong{color:#14110d}
 .donate-photo{aspect-ratio:4/5;overflow:hidden;position:relative;box-shadow:0 20px 60px rgba(20,17,13,.2)}
 .donate-photo img{width:100%;height:100%;object-fit:cover;object-position:center;filter:sepia(.1) contrast(1.05)}
+@media(max-width:900px){
+  .donate-grid{grid-template-columns:1fr;gap:40px}
+  .donate{padding:80px 0}
+  .donate-photo{display:none}
+}
 
 /* IG FEED */
 .ig-section{background:var(--black);padding:100px 0}
@@ -147,11 +169,11 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 .ig-handle{font-family:var(--m);font-size:.8rem;letter-spacing:.14em;color:rgba(241,236,225,.35);margin-bottom:50px;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:color .2s}
 .ig-handle:hover{color:var(--orange)}
 .ig-handle svg{width:16px;height:16px}
+@media(max-width:700px){.ig-section{padding:70px 0}}
 
 /* FOOTER */
 .site-footer{background:var(--black2);color:var(--offwhite);padding:80px 0 36px;border-top:1px solid rgba(241,236,225,.08)}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:56px;margin-bottom:56px}
-@media(max-width:700px){.footer-grid{grid-template-columns:1fr;gap:36px}}
 .footer-brand h3{font-family:var(--d);font-size:2.2rem;text-transform:uppercase;line-height:1;margin-bottom:12px}
 .footer-brand .accent{color:var(--red)}
 .footer-brand p{color:rgba(241,236,225,.45);font-size:.9rem;max-width:340px}
@@ -161,15 +183,15 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 .footer-col a{color:rgba(241,236,225,.6);text-decoration:none;font-size:.9rem;transition:color .2s}
 .footer-col a:hover{color:var(--red)}
 .footer-bottom{padding-top:28px;border-top:1px solid rgba(241,236,225,.08);display:flex;justify-content:space-between;font-family:var(--m);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,225,.25);flex-wrap:wrap;gap:10px}
-
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s,transform .8s}
-.reveal.in{opacity:1;transform:translateY(0)}
-
 @media(max-width:700px){
+  .footer-grid{grid-template-columns:1fr;gap:36px}
   .container{padding:0 20px}
   nav{padding:12px 20px}
-  .pillars,.about,.donate{padding:90px 0}
 }
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s,transform .8s}
+.reveal.in{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
@@ -185,7 +207,7 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
     <li><a href="#contact">Contact</a></li>
     <li><a href="#donate" class="cta">Donate</a></li>
   </ul>
-  <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
@@ -198,7 +220,7 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 <!-- HERO -->
 <section class="hero-section" id="home">
   <div class="film">
-    <img src="IMG_1442.JPG" alt="Ignite Belize">
+    <img src="https://raw.githubusercontent.com/Ignitemvmt/Ignitemvmt/main/IMG_1442.JPG" alt="Ignite Belize">
     <div class="film-fade"></div>
     <div class="film-verse">"Your kingdom come — in Belize as in heaven."<b>Matthew 6:10</b></div>
   </div>
@@ -245,31 +267,29 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 
     <div class="pillars-grid">
 
-      <!-- PILLAR 1: BURN NIGHTS -->
+      <!-- PILLAR 1: WORSHIP NIGHTS -->
       <div class="pillar reveal">
         <div class="pillar-img">
-          <img src="IMG_4295.jpg" alt="Burn Nights — worship">
+          <img src="https://raw.githubusercontent.com/Ignitemvmt/Ignitemvmt/main/IMG_1469.JPG" alt="Worship Nights">
           <div class="pillar-img-overlay"></div>
         </div>
         <div class="pillar-body">
-          <span class="pillar-program-chip">Burn</span>
-          <div class="pillar-name">Burn Nights</div>
+          <span class="pillar-program-chip">worship</span>
+          <div class="pillar-name">Worship Nights</div>
           <p class="pillar-desc">Filling our jars with oil, pouring it all out to Yeshua. Nights of raw, unfiltered worship where a generation encounters the living God.</p>
-          <div class="pillar-sub">Worship</div>
         </div>
       </div>
 
       <!-- PILLAR 2: LAUNCH -->
       <div class="pillar reveal">
         <div class="pillar-img">
-          <img src="IMG_4297.jpg" alt="Launch — high school initiative">
+          <img src="https://raw.githubusercontent.com/Ignitemvmt/Ignitemvmt/main/IMG_4335.HEIC" alt="Launch — High School Initiatives">
           <div class="pillar-img-overlay"></div>
         </div>
         <div class="pillar-body">
-          <span class="pillar-program-chip">Launch</span>
+          <span class="pillar-program-chip">high school initiatives</span>
           <div class="pillar-name">Launch</div>
           <p class="pillar-desc">Raising up Gen-Z catalysts throughout every high school in Belize. Leadership curriculum, community, and a vision bigger than themselves.</p>
-          <div class="pillar-sub">H.S. Initiative</div>
           <a href="https://LaunchBelize.org" class="pillar-link" target="_blank">Learn More →</a>
         </div>
       </div>
@@ -277,14 +297,13 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
       <!-- PILLAR 3: EVERYDAY MISSIONS -->
       <div class="pillar reveal">
         <div class="pillar-img">
-          <img src="IMG_4298.jpg" alt="Everyday Missions — evangelism">
+          <img src="https://raw.githubusercontent.com/Ignitemvmt/Ignitemvmt/main/IMG_4298.jpg" alt="Everyday Missions — evangelism">
           <div class="pillar-img-overlay"></div>
         </div>
         <div class="pillar-body">
-          <span class="pillar-program-chip">Go</span>
+          <span class="pillar-program-chip">everyday missions</span>
           <div class="pillar-name">Everyday Missions</div>
           <p class="pillar-desc">Training Gen-Z to explode into everyday evangelism. Every street, school, and conversation becomes a mission field. No stage required.</p>
-          <div class="pillar-sub">Evangelism</div>
         </div>
       </div>
 
@@ -307,7 +326,7 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
       </div>
       <div class="founder-card reveal">
         <div class="founder-photo-wrap">
-          <img src="founder-photo.jpg" alt="Brent Heavener, founder of Ignite Movement">
+          <img src="https://raw.githubusercontent.com/Ignitemvmt/Ignitemvmt/main/founder-photo.jpg" alt="Brent Heavener, founder of Ignite Movement">
           <div class="scribble-name">brent.</div>
         </div>
         <div class="founder-meta">
@@ -322,7 +341,7 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 <!-- DONATE -->
 <section class="donate" id="donate">
   <div class="container">
-    <div class="donate-inner reveal">
+    <div class="reveal">
       <div class="donate-grid">
         <div>
           <div class="donate-tag">Support the Mission</div>
@@ -336,7 +355,7 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
           </div>
         </div>
         <div class="donate-photo">
-          <img src="IMG_4300.jpg" alt="Ignite Belize community">
+          <img src="https://raw.githubusercontent.com/Ignitemvmt/Ignitemvmt/main/IMG_4300.jpg" alt="Ignite Belize community">
         </div>
       </div>
     </div>
@@ -395,26 +414,40 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 
 <script>
 // Behold IG widget
-(() => {
-  const d=document,s=d.createElement("script");s.type="module";
-  s.src="https://w.behold.so/widget.js";d.head.append(s);
-})();
+(()=>{const s=document.createElement("script");s.type="module";s.src="https://w.behold.so/widget.js";document.head.append(s)})();
+
 // Nav scroll
 const nav=document.getElementById('mainNav');
-window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>30)});
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>30));
+
 // Mobile menu
 const tog=document.getElementById('navToggle'),mm=document.getElementById('mobileMenu');
-tog.addEventListener('click',()=>{tog.classList.toggle('active');mm.classList.toggle('active');document.body.style.overflow=mm.classList.contains('active')?'hidden':''});
-mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{tog.classList.remove('active');mm.classList.remove('active');document.body.style.overflow=''}));
-// Rotating subtitle
+tog.addEventListener('click',()=>{
+  const open=mm.classList.toggle('active');
+  tog.classList.toggle('active',open);
+  document.body.style.overflow=open?'hidden':'';
+});
+mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  tog.classList.remove('active');mm.classList.remove('active');document.body.style.overflow='';
+}));
+
+// Rotating words
 const words=document.querySelectorAll('#rotator .word');let cur=0;
 setInterval(()=>{words[cur].classList.remove('active');cur=(cur+1)%words.length;words[cur].classList.add('active');},2200);
-// Reveal
-const reveals=document.querySelectorAll('.reveal');
-const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});},{threshold:.1});
-reveals.forEach(r=>io.observe(r));
+
+// Reveal on scroll
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(r=>io.observe(r));
+
 // Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){const h=this.getAttribute('href');if(h!=='#'&&h.length>1){const t=document.querySelector(h);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}}});});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){
+    const t=document.querySelector(this.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
 </script>
 </body>
 </html>
