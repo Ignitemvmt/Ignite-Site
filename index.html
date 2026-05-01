@@ -42,7 +42,9 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 .mobile-menu a:hover{color:var(--red)}
 @media(max-width:900px){.nav-links{display:none}.nav-toggle{display:flex}}
 
-/* HERO */
+/* ============================================================
+   HERO — DESKTOP (unchanged)
+   ============================================================ */
 .hero-section{width:100vw;min-height:100vh;display:grid;grid-template-columns:55% 45%;overflow:hidden;background:var(--black);margin-top:64px}
 .film{position:relative;overflow:hidden}
 .film::before,.film::after{content:'';position:absolute;left:0;right:0;height:7%;background:var(--black);z-index:3}
@@ -67,13 +69,124 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 .hero-volunteer{font-family:var(--m);font-size:.57rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,232,.38);border-bottom:1px solid rgba(245,240,232,.16);padding-bottom:2px;text-decoration:none;background:none;border:none;cursor:pointer;transition:color .2s;margin-top:8px}
 .hero-volunteer:hover{color:var(--offwhite)}
 
-/* MOBILE HERO */
+/* ============================================================
+   HERO — MOBILE (full-bleed, text overlaid — Circuit Riders style)
+   ============================================================ */
 @media(max-width:860px){
-  .hero-section{grid-template-columns:1fr;min-height:auto;margin-top:64px}
-  .film{height:70vw;min-height:280px;max-height:420px}
-  .film img{object-position:50% 30%}
-  .hero-text{padding:44px 24px 80px;min-height:auto}
-  .hero-text::before{top:0;bottom:0;left:0;right:0;width:100%;height:3px;top:auto;bottom:0}
+  /* Stack grid, hero takes full viewport */
+  .hero-section{
+    display:block;
+    position:relative;
+    margin-top:64px;
+    min-height:calc(100svh - 64px);
+    background:var(--black);
+  }
+
+  /* Film becomes the full background layer */
+  .film{
+    position:absolute;
+    inset:0;
+    height:100%;
+    width:100%;
+    z-index:0;
+  }
+  /* Remove the black bars on mobile */
+  .film::before,.film::after{display:none}
+  .film-fade{display:none}
+  .film img{
+    object-position:50% 25%;
+    filter:grayscale(.5) sepia(.1) contrast(1.12) brightness(.45);
+  }
+  /* Gradient overlay — dark at bottom for legibility, slight dark at top for nav */
+  .film::after{
+    display:block;
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+      to bottom,
+      rgba(9,8,10,.55) 0%,
+      rgba(9,8,10,.1) 30%,
+      rgba(9,8,10,.15) 55%,
+      rgba(9,8,10,.82) 80%,
+      rgba(9,8,10,.97) 100%
+    );
+    z-index:2;
+    height:100%;
+    width:100%;
+  }
+  /* Scripture verse — hide on mobile (clutters) */
+  .film-verse{display:none}
+
+  /* Text panel floats over the image */
+  .hero-text{
+    position:absolute;
+    inset:0;
+    z-index:3;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:0 24px 52px;
+    min-height:0;
+    background:transparent;
+  }
+  /* Remove left red bar on mobile */
+  .hero-text::before{display:none}
+
+  /* Big title */
+  .hero-h1{
+    font-size:clamp(5.8rem,22vw,9rem);
+    line-height:.84;
+    margin-bottom:20px;
+    color:var(--offwhite);
+    text-shadow:0 2px 24px rgba(0,0,0,.6);
+  }
+  .hero-h1 .hl{color:var(--red)}
+
+  /* Lead */
+  .hero-lead{
+    font-size:.95rem;
+    color:rgba(245,240,232,.75);
+    margin-bottom:32px;
+    max-width:none;
+    text-shadow:0 1px 8px rgba(0,0,0,.7);
+  }
+  .hero-lead .rotating-wrap{
+    min-width:0;
+    width:auto;
+  }
+  .hero-lead .rotating-wrap .word{
+    color:var(--red);
+    font-weight:700;
+  }
+
+  /* Buttons */
+  .hero-btns{
+    align-items:stretch;
+    gap:12px;
+    width:100%;
+  }
+  .hero-btn{
+    justify-content:center;
+    padding:15px 24px;
+    font-size:.65rem;
+  }
+  .hero-ghost{
+    text-align:center;
+    color:rgba(245,240,232,.5);
+    border-bottom:1px solid rgba(245,240,232,.2);
+    font-size:.6rem;
+  }
+  .hero-ghost:hover{color:var(--offwhite)}
+  .hero-volunteer{
+    text-align:center;
+    color:rgba(245,240,232,.4);
+    font-size:.6rem;
+    margin-top:0;
+    padding-bottom:2px;
+    border-bottom:1px solid rgba(245,240,232,.12);
+  }
+  .hero-volunteer:hover{color:var(--offwhite)}
 }
 
 /* BAND */
@@ -296,7 +409,7 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
             <input type="text" id="vol-name" name="name" placeholder="Full Name" class="volunteer-input" required>
             <input type="email" id="vol-email" name="email" placeholder="Email Address" class="volunteer-input" required>
             <input type="tel" id="vol-phone" name="phone" placeholder="Phone Number" class="volunteer-input">
-            <input type="text" id="vol-district" name="district" placeholder="District (if applicable)" class="volunteer-input">
+            <input type="text" id="vol-district-input" name="district" placeholder="District (if applicable)" class="volunteer-input">
           </div>
         </div>
         <button type="submit" class="volunteer-submit">Submit</button>
@@ -462,6 +575,7 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
       </a>
     </div>
     <div class="reveal">
+      <!-- Behold IG Feed Widget -->
       <behold-widget feed-id="mEmyKoQUU8W4dKAALlPu"></behold-widget>
     </div>
   </div>
@@ -501,10 +615,9 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
   </div>
 </footer>
 
-<script>
-// Behold IG widget
-(()=>{const s=document.createElement("script");s.type="module";s.src="https://w.behold.so/widget.js";document.head.append(s)})();
+<script type="module" src="https://w.behold.so/widget.js"></script>
 
+<script>
 // Nav scroll
 const nav=document.getElementById('mainNav');
 window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>30));
@@ -566,7 +679,7 @@ volForm.addEventListener('submit',async function(e){
   const name=document.getElementById('vol-name').value;
   const email=document.getElementById('vol-email').value;
   const phone=document.getElementById('vol-phone').value;
-  const district=document.getElementById('vol-district').value;
+  const district=document.getElementById('vol-district-input').value;
   
   const areas=[];
   document.querySelectorAll('input[name="areas"]:checked').forEach(cb=>{
