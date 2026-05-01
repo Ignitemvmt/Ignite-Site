@@ -43,16 +43,16 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 @media(max-width:900px){.nav-links{display:none}.nav-toggle{display:flex}}
 
 /* HERO */
-.hero-section{min-height:100vh;position:relative;overflow:hidden;background:var(--black);margin-top:64px;display:flex;align-items:center;justify-content:center}
-.hero-bg{position:absolute;inset:0;z-index:1}
-.hero-bg::before,.hero-bg::after{content:'';position:absolute;left:0;right:0;height:7%;background:var(--black);z-index:3}
-.hero-bg::before{top:0}.hero-bg::after{bottom:0}
-.hero-bg-img{position:absolute;inset:0;z-index:2;overflow:hidden}
-.hero-bg-img img{width:100%;height:100%;object-fit:cover;object-position:50% 35%;filter:grayscale(.65) sepia(.12) contrast(1.1) brightness(.55)}
-.hero-bg-fade{position:absolute;right:0;top:0;bottom:0;width:120px;z-index:4;background:linear-gradient(to right,transparent,var(--black))}
-.hero-content{position:relative;z-index:5;max-width:600px}
-.hero-verse{font-style:italic;font-size:.95rem;font-weight:300;color:rgba(245,240,232,.65);line-height:1.6;margin-bottom:40px;text-shadow:0 1px 12px rgba(0,0,0,.8)}
-.hero-verse b{display:block;margin-top:6px;font-family:var(--m);font-size:.48rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,240,232,.3);font-weight:400;font-style:normal}
+.hero-section{width:100vw;min-height:100vh;display:grid;grid-template-columns:55% 45%;overflow:hidden;background:var(--black);margin-top:64px}
+.film{position:relative;overflow:hidden}
+.film::before,.film::after{content:'';position:absolute;left:0;right:0;height:7%;background:var(--black);z-index:3}
+.film::before{top:0}.film::after{bottom:0}
+.film-fade{position:absolute;right:0;top:0;bottom:0;width:120px;z-index:4;background:linear-gradient(to right,transparent,var(--black))}
+.film img{width:100%;height:100%;object-fit:cover;object-position:50% 35%;filter:grayscale(.65) sepia(.12) contrast(1.1) brightness(.55);display:block}
+.film-verse{position:absolute;bottom:12%;left:28px;z-index:5;font-style:italic;font-size:.95rem;font-weight:300;color:rgba(245,240,232,.65);line-height:1.6;max-width:260px;text-shadow:0 1px 12px rgba(0,0,0,.8)}
+.film-verse b{display:block;margin-top:6px;font-family:var(--m);font-size:.48rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,240,232,.3);font-weight:400;font-style:normal}
+.hero-text{position:relative;display:flex;flex-direction:column;justify-content:center;padding:0 56px 0 52px;background:var(--black);overflow:hidden;min-height:calc(100vh - 64px)}
+.hero-text::before{content:'';position:absolute;left:0;top:10%;bottom:10%;width:3px;background:var(--red)}
 .hero-h1{font-family:var(--bb);font-size:clamp(5.5rem,9vw,10.5rem);line-height:.87;text-transform:uppercase;margin-bottom:36px;color:var(--offwhite)}
 .hero-h1 .hl{color:var(--red)}
 .hero-lead{font-size:1rem;font-weight:300;color:rgba(245,240,232,.6);line-height:1.5;max-width:340px;margin-bottom:50px}
@@ -69,14 +69,11 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 
 /* MOBILE HERO */
 @media(max-width:860px){
-  .hero-section{min-height:100vh;margin-top:64px}
-  .hero-content{padding:40px 24px;max-width:100%;text-align:center;display:flex;flex-direction:column;align-items:center}
-  .hero-verse{margin-bottom:30px}
-  .hero-h1{font-size:clamp(3.5rem,10vw,5.5rem)}
-  .hero-lead{font-size:.95rem}
-  .hero-lead .rotating-wrap{min-width:150px}
-  .hero-btns{align-items:center;width:100%}
-  .hero-btn,.hero-ghost,.hero-volunteer{width:100%;justify-content:center}
+  .hero-section{grid-template-columns:1fr;min-height:auto;margin-top:64px}
+  .film{height:70vw;min-height:280px;max-height:420px}
+  .film img{object-position:50% 30%}
+  .hero-text{padding:44px 24px 80px;min-height:auto}
+  .hero-text::before{top:0;bottom:0;left:0;right:0;width:100%;height:3px;top:auto;bottom:0}
 }
 
 /* BAND */
@@ -314,14 +311,12 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 
 <!-- HERO -->
 <section class="hero-section" id="home">
-  <div class="hero-bg">
-    <div class="hero-bg-img">
-      <img src="https://raw.githubusercontent.com/Ignitemvmt/Ignite-Site/main/IMG_1442.JPG" alt="Ignite Belize">
-    </div>
-    <div class="hero-bg-fade"></div>
+  <div class="film">
+    <img src="https://raw.githubusercontent.com/Ignitemvmt/Ignite-Site/main/IMG_1442.JPG" alt="Ignite Belize">
+    <div class="film-fade"></div>
+    <div class="film-verse">"Your kingdom come — in Belize as in heaven."<b>Matthew 6:10</b></div>
   </div>
-  <div class="hero-content">
-    <div class="hero-verse">"Your kingdom come — in Belize as in heaven."<b>Matthew 6:10</b></div>
+  <div class="hero-text">
     <h1 class="hero-h1">Ignite<br><span class="hl">Belize</span></h1>
     <p class="hero-lead">
       Raising up gen-z<br>
@@ -466,6 +461,9 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
         @ignite.belize
       </a>
     </div>
+    <div class="reveal">
+      <behold-widget feed-id="mEmyKoQUU8W4dKAALlPu"></behold-widget>
+    </div>
   </div>
 </section>
 
@@ -504,6 +502,9 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 </footer>
 
 <script>
+// Behold IG widget
+(()=>{const s=document.createElement("script");s.type="module";s.src="https://w.behold.so/widget.js";document.head.append(s)})();
+
 // Nav scroll
 const nav=document.getElementById('mainNav');
 window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>30));
