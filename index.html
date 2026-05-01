@@ -152,12 +152,22 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
     text-shadow:0 1px 8px rgba(0,0,0,.7);
   }
   .hero-lead .rotating-wrap{
+    display:block;
+    position:relative;
+    height:1.5em;
+    overflow:hidden;
+    width:100%;
     min-width:0;
-    width:auto;
+    margin-top:4px;
   }
   .hero-lead .rotating-wrap .word{
+    position:absolute;
+    left:0;
+    top:0;
     color:var(--red);
     font-weight:700;
+    font-size:1rem;
+    white-space:nowrap;
   }
 
   /* Buttons */
@@ -204,9 +214,9 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 .pillars-title .accent{color:var(--red)}
 .three-words{display:flex;justify-content:center;gap:clamp(24px,4vw,64px);margin-top:24px;flex-wrap:wrap}
 .three-word{font-family:var(--h);font-size:clamp(2rem,4vw,3.2rem);position:relative;transition:color .3s}
-.three-word.w1{transform:rotate(-2deg);color:rgba(232,67,10,.7)}
-.three-word.w2{transform:rotate(1deg);color:rgba(232,67,10,.5)}
-.three-word.w3{transform:rotate(-1.5deg);color:rgba(232,67,10,.35)}
+.three-word.w1{transform:rotate(-2deg);color:rgba(232,67,10,.95)}
+.three-word.w2{transform:rotate(1deg);color:rgba(232,67,10,.82)}
+.three-word.w3{transform:rotate(-1.5deg);color:rgba(232,67,10,.68)}
 .pillars-spirit-verse{font-family:var(--m);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,225,.35);text-align:center;margin-top:20px;line-height:1.7}
 .pillars-spirit-verse em{font-style:italic;font-family:var(--b);font-size:.85rem;color:rgba(241,236,225,.5);letter-spacing:0;text-transform:none;display:block;margin-bottom:4px}
 .pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
@@ -223,9 +233,89 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 .pillar-link{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-family:var(--m);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--red);text-decoration:none;border-bottom:1px solid rgba(232,67,10,.3);padding-bottom:2px;transition:color .2s,border-color .2s}
 .pillar-link:hover{color:#fff;border-color:rgba(255,255,255,.3)}
 @media(max-width:900px){
-  .pillars-grid{grid-template-columns:1fr}
+  .pillars-grid{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
   .pillar-img{aspect-ratio:4/3}
   .pillars{padding:80px 0 60px}
+
+  /* ---- Mobile pillar redesign: editorial stacked cards ---- */
+  .pillar{
+    display:grid;
+    grid-template-columns:1fr;
+    border-radius:0;
+    transform:none !important;
+    background:transparent;
+    border-bottom:1px solid rgba(241,236,225,.07);
+  }
+  .pillar:last-child{border-bottom:none}
+
+  /* Each card alternates: odd = image left 40% / text right, even = full bleed photo with text over */
+  .pillar:nth-child(odd){
+    display:grid;
+    grid-template-columns:42% 1fr;
+    min-height:260px;
+    background:var(--black3);
+    align-items:stretch;
+  }
+  .pillar:nth-child(even){
+    display:block;
+    position:relative;
+  }
+
+  /* Odd: image column */
+  .pillar:nth-child(odd) .pillar-img{
+    aspect-ratio:auto;
+    height:100%;
+    min-height:240px;
+  }
+  .pillar:nth-child(odd) .pillar-img img{
+    height:100%;
+    object-position:center top;
+  }
+
+  /* Odd: text sits beside image, NOT overlaid */
+  .pillar:nth-child(odd) .pillar-body{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:24px 20px;
+    background:var(--black3);
+  }
+
+  /* Even: full-width photo with text over bottom — more dramatic */
+  .pillar:nth-child(even) .pillar-img{
+    aspect-ratio:16/10;
+    width:100%;
+  }
+  .pillar:nth-child(even) .pillar-body{
+    position:absolute;
+    bottom:0; left:0; right:0;
+    padding:20px 20px 24px;
+    background:linear-gradient(to top, rgba(9,8,10,.98) 0%, rgba(9,8,10,.7) 60%, transparent 100%);
+  }
+
+  /* Mobile typography tweaks for pillar cards */
+  .pillar-name{font-size:2rem;margin-bottom:6px}
+  .pillar-program-chip{font-size:1.5rem}
+  .pillar-desc{font-size:.82rem;line-height:1.55}
+
+  /* Number badge — gen-z editorial touch */
+  .pillar::before{
+    content:attr(data-num);
+    position:absolute;
+    top:12px;
+    right:14px;
+    font-family:var(--m);
+    font-size:.58rem;
+    letter-spacing:.18em;
+    color:rgba(232,67,10,.5);
+    z-index:10;
+    font-weight:700;
+  }
 }
 
 /* ABOUT */
@@ -472,7 +562,7 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
     </div>
 
     <div class="pillars-grid">
-      <div class="pillar reveal">
+      <div class="pillar reveal" data-num="01">
         <div class="pillar-img">
           <img src="https://raw.githubusercontent.com/Ignitemvmt/Ignite-Site/main/IMG_1469.JPG" alt="Worship Nights">
           <div class="pillar-img-overlay"></div>
@@ -484,7 +574,7 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
         </div>
       </div>
 
-      <div class="pillar reveal">
+      <div class="pillar reveal" data-num="02">
         <div class="pillar-img">
           <img src="https://raw.githubusercontent.com/Ignitemvmt/Ignite-Site/main/IMG_4335.jpg" alt="Launch — High School Initiatives">
           <div class="pillar-img-overlay"></div>
@@ -497,7 +587,7 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
         </div>
       </div>
 
-      <div class="pillar reveal">
+      <div class="pillar reveal" data-num="03">
         <div class="pillar-img">
           <img src="https://raw.githubusercontent.com/Ignitemvmt/Ignite-Site/main/charlie_evangelism.jpg" alt="Everyday Missions — evangelism">
           <div class="pillar-img-overlay"></div>
