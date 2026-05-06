@@ -43,7 +43,7 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 @media(max-width:900px){.nav-links{display:none}.nav-toggle{display:flex}}
 
 /* ============================================================
-   HERO — DESKTOP (unchanged)
+   HERO — DESKTOP
    ============================================================ */
 .hero-section{width:100vw;min-height:100vh;display:grid;grid-template-columns:55% 45%;overflow:hidden;background:var(--black);margin-top:64px}
 .film{position:relative;overflow:hidden}
@@ -70,10 +70,9 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 .hero-volunteer:hover{color:var(--offwhite)}
 
 /* ============================================================
-   HERO — MOBILE (full-bleed, text overlaid — Circuit Riders style)
+   HERO — MOBILE
    ============================================================ */
 @media(max-width:860px){
-  /* Stack grid, hero takes full viewport */
   .hero-section{
     display:block;
     position:relative;
@@ -81,8 +80,6 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
     min-height:calc(100svh - 64px);
     background:var(--black);
   }
-
-  /* Film becomes the full background layer */
   .film{
     position:absolute;
     inset:0;
@@ -90,14 +87,12 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
     width:100%;
     z-index:0;
   }
-  /* Remove the black bars on mobile */
   .film::before,.film::after{display:none}
   .film-fade{display:none}
   .film img{
     object-position:50% 25%;
     filter:grayscale(.5) sepia(.1) contrast(1.12) brightness(.45);
   }
-  /* Gradient overlay — dark at bottom for legibility, slight dark at top for nav */
   .film::after{
     display:block;
     content:'';
@@ -115,10 +110,7 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
     height:100%;
     width:100%;
   }
-  /* Scripture verse — hide on mobile (clutters) */
   .film-verse{display:none}
-
-  /* Text panel floats over the image */
   .hero-text{
     position:absolute;
     inset:0;
@@ -130,10 +122,7 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
     min-height:0;
     background:transparent;
   }
-  /* Remove left red bar on mobile */
   .hero-text::before{display:none}
-
-  /* Big title */
   .hero-h1{
     font-size:clamp(5.8rem,22vw,9rem);
     line-height:.84;
@@ -142,8 +131,6 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
     text-shadow:0 2px 24px rgba(0,0,0,.6);
   }
   .hero-h1 .hl{color:var(--red)}
-
-  /* Lead */
   .hero-lead{
     font-size:.95rem;
     color:rgba(245,240,232,.75);
@@ -169,8 +156,6 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
     font-size:1rem;
     white-space:nowrap;
   }
-
-  /* Buttons */
   .hero-btns{
     align-items:stretch;
     gap:12px;
@@ -214,9 +199,10 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 .pillars-title .accent{color:var(--red)}
 .three-words{display:flex;justify-content:center;gap:clamp(24px,4vw,64px);margin-top:24px;flex-wrap:wrap}
 .three-word{font-family:var(--h);font-size:clamp(2rem,4vw,3.2rem);position:relative;transition:color .3s}
+/* CHANGED: .w2 and .w3 opacity boosted so they're less faded */
 .three-word.w1{transform:rotate(-2deg);color:rgba(232,67,10,.95)}
-.three-word.w2{transform:rotate(1deg);color:rgba(232,67,10,.82)}
-.three-word.w3{transform:rotate(-1.5deg);color:rgba(232,67,10,.68)}
+.three-word.w2{transform:rotate(1deg);color:rgba(232,67,10,.92)}
+.three-word.w3{transform:rotate(-1.5deg);color:rgba(232,67,10,.85)}
 .pillars-spirit-verse{font-family:var(--m);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,236,225,.35);text-align:center;margin-top:20px;line-height:1.7}
 .pillars-spirit-verse em{font-style:italic;font-family:var(--b);font-size:.85rem;color:rgba(241,236,225,.5);letter-spacing:0;text-transform:none;display:block;margin-bottom:4px}
 .pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
@@ -240,28 +226,17 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
   }
   .pillar-img{aspect-ratio:4/3}
   .pillars{padding:80px 0 60px}
-
-  /* ---- Mobile pillar redesign: editorial stacked cards ---- */
-  .pillar{
-    display:grid;
-    grid-template-columns:1fr;
-    border-radius:0;
-    transform:none !important;
-    background:transparent;
-    border-bottom:1px solid rgba(241,236,225,.07);
-  }
-  .pillar:last-child{border-bottom:none}
-
-  /* ALL pillars now use the image-left / text-right layout */
   .pillar{
     display:grid;
     grid-template-columns:42% 1fr;
     min-height:260px;
     background:var(--black3);
     align-items:stretch;
+    border-radius:0;
+    transform:none !important;
+    border-bottom:1px solid rgba(241,236,225,.07);
   }
-
-  /* Image column */
+  .pillar:last-child{border-bottom:none}
   .pillar .pillar-img{
     aspect-ratio:auto;
     height:100%;
@@ -271,8 +246,6 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
     height:100%;
     object-position:center top;
   }
-
-  /* Text sits beside image, NOT overlaid */
   .pillar .pillar-body{
     position:relative;
     display:flex;
@@ -281,13 +254,9 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
     padding:24px 20px;
     background:var(--black3);
   }
-
-  /* Mobile typography tweaks for pillar cards */
   .pillar-name{font-size:2rem;margin-bottom:6px}
   .pillar-program-chip{font-size:1.5rem}
   .pillar-desc{font-size:.82rem;line-height:1.55}
-
-  /* Number badge — gen-z editorial touch */
   .pillar::before{
     content:attr(data-num);
     position:absolute;
@@ -343,10 +312,32 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 .donate-501 strong{color:#14110d}
 .donate-photo{aspect-ratio:4/5;overflow:hidden;position:relative;box-shadow:0 20px 60px rgba(20,17,13,.2)}
 .donate-photo img{width:100%;height:100%;object-fit:cover;object-position:center;filter:sepia(.1) contrast(1.05)}
+
+/* DONATE mobile — show photo cleanly below content */
 @media(max-width:900px){
-  .donate-grid{grid-template-columns:1fr;gap:40px}
-  .donate{padding:80px 0}
-  .donate-photo{display:none}
+  .donate-grid{
+    grid-template-columns:1fr;
+    gap:0;
+  }
+  .donate{padding:80px 0 0}
+  /* Photo becomes a full-width banner at the bottom */
+  .donate-photo{
+    display:block;
+    aspect-ratio:16/9;
+    width:100%;
+    margin-top:52px;
+    box-shadow:none;
+  }
+  .donate-photo img{
+    object-position:center 30%;
+  }
+  /* Give the text content its own bottom padding */
+  .donate-grid > div:first-child{
+    padding:0 0 0 0;
+  }
+  .donate .container{
+    padding-bottom:0;
+  }
 }
 
 /* IG FEED */
@@ -558,15 +549,17 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
         </div>
       </div>
 
+      <!-- CHANGED: image URL switched to jsdelivr CDN to fix cross-browser loading -->
+      <!-- CHANGED: copy updated per request -->
       <div class="pillar reveal" data-num="02">
         <div class="pillar-img">
-          <img src="https://raw.githubusercontent.com/Ignitemvmt/Ignite-Site/main/IMG_4335.jpg" alt="Launch — High School Initiatives">
+          <img src="https://cdn.jsdelivr.net/gh/Ignitemvmt/Ignite-Site@main/IMG_4335.jpg" alt="Launch — High School Initiatives">
           <div class="pillar-img-overlay"></div>
         </div>
         <div class="pillar-body">
           <span class="pillar-program-chip">high school initiatives</span>
           <div class="pillar-name">Launch</div>
-          <p class="pillar-desc">Raising up Gen-Z catalysts throughout every high school in Belize. Leadership curriculum, community, and a vision bigger than themselves.</p>
+          <p class="pillar-desc">Training gen-z in their purpose throughout high schools in Belize. Students encounter God, hear their purpose, then are developed to walk in it.</p>
           <a href="https://LaunchBelize.org" class="pillar-link" target="_blank">Learn More →</a>
         </div>
       </div>
@@ -617,6 +610,7 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
 <section class="donate" id="donate">
   <div class="container">
     <div class="reveal">
+      <!-- CHANGED: donate-grid now stacks on mobile with photo shown as full-width banner -->
       <div class="donate-grid">
         <div>
           <div class="donate-tag">Support the Mission</div>
@@ -624,8 +618,9 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
           <p class="donate-lead">Help us empower the next generation of leaders in Belize. Every gift directly supports our programs and creates lasting impact in young lives. Ignite Movement is a <strong>501(c)(3) nonprofit</strong> — your gift is <strong>tax deductible</strong>.</p>
           <div class="donate-cta-row">
             <a href="https://ignitebelize.org/donate" class="donate-btn">Give Now</a>
+            <!-- CHANGED: removed "to the fullest extent allowed by law" -->
             <div class="donate-501">
-              <p><strong>Tax Deductible</strong><br>Ignite Movement is a registered 501(c)(3). All donations are tax deductible to the fullest extent allowed by law.</p>
+              <p><strong>Tax Deductible</strong><br>Ignite Movement is a registered 501(c)(3). All donations are tax deductible.</p>
             </div>
           </div>
         </div>
@@ -649,7 +644,6 @@ nav.scrolled{padding:11px 32px;background:rgba(9,8,10,.97)}
       </a>
     </div>
     <div class="reveal">
-      <!-- Behold IG Feed Widget -->
       <behold-widget feed-id="mEmyKoQUU8W4dKAALlPu"></behold-widget>
     </div>
   </div>
