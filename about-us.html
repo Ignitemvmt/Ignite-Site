@@ -38,6 +38,13 @@ body {
     overflow-x: hidden;
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
+    padding-top: 72px;
+}
+
+@media (max-width: 700px) {
+    body {
+        padding-top: 64px;
+    }
 }
 
 body::before {
@@ -80,7 +87,6 @@ body::after {
     overflow: hidden;
     display: flex;
     align-items: flex-end;
-    margin-top: -72px; /* pull behind fixed nav */
 }
 
 .hero-bg {
@@ -170,7 +176,7 @@ body::after {
 }
 
 @media (max-width: 700px) {
-    .about-hero { max-height: 700px; margin-top: -64px; }
+    .about-hero { max-height: 700px; }
     .hero-content { padding: 40px 0 60px; }
 }
 
@@ -180,8 +186,14 @@ body::after {
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
     position: sticky;
-    top: 64px;
+    top: 72px;
     z-index: 50;
+}
+
+@media (max-width: 700px) {
+    .sub-nav {
+        top: 64px;
+    }
 }
 
 .sub-nav .container {
