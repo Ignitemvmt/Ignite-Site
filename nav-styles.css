@@ -1,24 +1,15 @@
 /**
  * Ignite Belize — nav-styles.css
- * All nav/footer/modal styles are now injected by navigation.js
- * This file exists for any page-specific overrides if needed.
- *
- * Usage on every page:
- *   <link rel="stylesheet" href="nav-styles.css">
- *   <div id="ignite-nav-root"></div>
- *   <div id="ignite-modal-root"></div>
- *   ... page content ...
- *   <div id="ignite-footer-root"></div>
- *   <script src="navigation.js"></script>
+ * All nav/footer/modal styles are injected by navigation.js
+ * This file handles page-level layout spacing only
  */
 
-/* Ensure page content clears the fixed nav */
 body {
-  padding-top: 72px;
+    padding-top: 72px;
 }
 
 @media (max-width: 700px) {
-  body {
-    padding-top: 64px;
-  }
+    body {
+        padding-top: 64px;
+    }
 }
