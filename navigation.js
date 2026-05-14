@@ -1,856 +1,505 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About — Ignite Belize</title>
-    <meta name="description" content="Who we are: a Gen-Z movement of disciples raising up movement makers across Belize. 501(c)(3) faith-based nonprofit based in Spanish Lookout.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@700&family=Playfair+Display:ital,wght@1,500;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="nav-styles.css">
-    <style>
-:root {
-    --paper: #f1ece1;
-    --paper-2: #e8e1d2;
-    --ink: #14110d;
-    --ink-soft: #2a251e;
-    --ink-dim: #6b6356;
-    --ink-faint: #a39a87;
-    --ember: #c8a439;
-    --ember-bright: #e8c050;
-    --line: rgba(20, 17, 13, 0.12);
-    --line-strong: rgba(20, 17, 13, 0.24);
-    --display: 'Anton', Impact, sans-serif;
-    --body: 'Inter', system-ui, sans-serif;
-    --mono: 'JetBrains Mono', 'Courier New', monospace;
-    --hand: 'Caveat', cursive;
-    --serif-it: 'Playfair Display', serif;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-
-body {
-    font-family: var(--body);
-    background: var(--paper);
-    color: var(--ink);
-    overflow-x: hidden;
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-}
-
-body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.45;
-    mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.2 0 0 0 0 0.15 0 0 0 0 0.1 0 0 0 0.45 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-}
-
-body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9997;
-    background: radial-gradient(ellipse 100% 100% at center, transparent 50%, rgba(20, 17, 13, 0.06) 100%);
-}
-
-.container {
-    max-width: 1320px;
-    margin: 0 auto;
-    padding: 0 32px;
-}
-
-@media (max-width: 700px) {
-    .container { padding: 0 20px; }
-}
-
-/* HERO */
-.about-hero {
-    padding: 0;
-    position: relative;
-    height: 100vh;
-    min-height: 600px;
-    max-height: 820px;
-    overflow: hidden;
-    display: flex;
-    align-items: flex-end;
-    margin-top: -72px; /* pull behind fixed nav */
-}
-
-.hero-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-}
-
-.hero-bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 30%;
-    filter: grayscale(0.4) sepia(0.25) contrast(1.05);
-}
-
-.hero-bg::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        to bottom,
-        rgba(20, 17, 13, 0.15) 0%,
-        rgba(20, 17, 13, 0.2) 40%,
-        rgba(20, 17, 13, 0.78) 80%,
-        rgba(20, 17, 13, 0.92) 100%
-    );
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    padding: 60px 0 80px;
-    color: var(--paper);
-}
-
-.hero-content .section-tag {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ember);
-    font-weight: 500;
-    margin-bottom: 20px;
-    display: inline-block;
-}
-
-.hero-content h1 {
-    font-family: var(--display);
-    font-size: clamp(3.8rem, 9vw, 8rem);
-    line-height: 0.9;
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
-    margin-bottom: 22px;
-    color: var(--paper);
-}
-
-.hero-content h1 .accent { color: var(--ember); }
-
-.hero-content h1 .who-we {
-    display: block;
-    font-family: var(--serif-it);
-    font-style: italic;
-    font-weight: 500;
-    font-size: 0.28em;
-    color: rgba(241, 236, 225, 0.7);
-    text-transform: none;
-    letter-spacing: 0;
-    margin-bottom: 8px;
-}
-
-.hero-content .lead {
-    font-size: 1.1rem;
-    color: rgba(241, 236, 225, 0.8);
-    max-width: 500px;
-    line-height: 1.6;
-}
-
-.hero-hand-note {
-    font-family: var(--hand);
-    font-size: 1.5rem;
-    color: var(--ember);
-    transform: rotate(-2deg);
-    display: inline-block;
-    margin-left: 4px;
-}
-
-@media (max-width: 700px) {
-    .about-hero { max-height: 700px; margin-top: -64px; }
-    .hero-content { padding: 40px 0 60px; }
-}
-
-/* SUB NAV */
-.sub-nav {
-    background: var(--paper-2);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    position: sticky;
-    top: 64px;
-    z-index: 50;
-}
-
-.sub-nav .container {
-    padding: 16px 32px;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.sub-nav a {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink);
-    text-decoration: none;
-    padding: 10px 22px;
-    border: 1px solid var(--ink);
-    transition: all 0.2s ease;
-}
-.sub-nav a:hover { background: var(--ink); color: var(--paper); }
-.sub-nav a.active { background: var(--ink); color: var(--paper); }
-.sub-nav a .num { color: var(--ember); margin-right: 8px; }
-
-/* SECTIONS */
-section { position: relative; padding: 140px 0; }
-
-.section-tag {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ember);
-    font-weight: 500;
-    margin-bottom: 24px;
-    display: inline-block;
-}
-.section-tag::before { content: '//'; margin-right: 12px; opacity: 0.6; }
-
-.section-title {
-    font-family: var(--display);
-    font-size: clamp(3rem, 7vw, 6rem);
-    line-height: 0.88;
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-    color: var(--ink);
-}
-.section-title .accent { color: var(--ember); }
-.section-title .hand {
-    font-family: var(--hand);
-    font-size: 0.55em;
-    text-transform: none;
-    color: var(--ember);
-    display: inline-block;
-    transform: rotate(-3deg) translateY(-12px);
-    margin: 0 6px;
-}
-
-.section-lead {
-    font-size: 1.15rem;
-    color: var(--ink-dim);
-    max-width: 640px;
-    margin-bottom: 60px;
-}
-
-@media (max-width: 700px) {
-    section { padding: 90px 0; }
-}
-
-/* BELIEF GRID */
-.belief-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    margin-top: 30px;
-}
-@media (max-width: 800px) { .belief-grid { grid-template-columns: 1fr; } }
-
-.card-invert {
-    background: var(--paper);
-    border: 2px solid var(--ink);
-    padding: 40px 32px;
-    transition: all 0.3s ease;
-}
-.card-invert:hover {
-    background: var(--ink);
-    color: var(--paper);
-    transform: translateY(-4px);
-}
-.card-invert:hover h3 { color: var(--paper); }
-.card-invert:hover p { color: var(--paper); opacity: 0.85; }
-.card-invert:hover .culture-scripture { color: rgba(200, 164, 57, 0.85); }
-
-.card-invert > span {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--ember);
-    margin-bottom: 16px;
-    display: block;
-}
-
-.card-invert h3 {
-    font-family: var(--display);
-    font-size: 1.9rem;
-    text-transform: uppercase;
-    line-height: 1;
-    letter-spacing: -0.01em;
-    margin-bottom: 14px;
-    color: var(--ink);
-    transition: color 0.3s ease;
-}
-
-.card-invert p {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--ink-soft);
-    transition: color 0.3s ease, opacity 0.3s ease;
-}
-
-.culture-scripture {
-    display: block;
-    font-family: var(--serif-it);
-    font-style: italic;
-    font-size: 0.9rem;
-    color: var(--ember);
-    margin-top: 14px;
-    transition: color 0.3s ease;
-}
-
-/* CULTURE CARD (full width) */
-.card-invert.card-culture {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    align-items: center;
-}
-@media (max-width: 800px) {
-    .card-invert.card-culture { grid-template-columns: 1fr; }
-}
-
-.culture-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    margin-top: 4px;
-}
-
-.culture-item {
-    padding: 18px 20px;
-    border: 1px solid var(--line-strong);
-    background: rgba(20, 17, 13, 0.03);
-    transition: background 0.3s ease;
-}
-.card-invert:hover .culture-item { border-color: rgba(241, 236, 225, 0.15); background: rgba(241, 236, 225, 0.05); }
-
-.culture-item h4 {
-    font-family: var(--display);
-    font-size: 1.05rem;
-    text-transform: uppercase;
-    color: var(--ink);
-    margin-bottom: 6px;
-    transition: color 0.3s ease;
-}
-.card-invert:hover .culture-item h4 { color: var(--paper); }
-
-.culture-item p {
-    font-size: 0.88rem;
-    color: var(--ink-dim);
-    margin-bottom: 8px;
-    line-height: 1.5;
-}
-.card-invert:hover .culture-item p { color: rgba(241, 236, 225, 0.7); }
-
-.culture-item .ref {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    color: var(--ember);
-    text-transform: uppercase;
-}
-
-/* MARQUEE BAND */
-.band {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 22px 0;
-    overflow: hidden;
-}
-.band-track {
-    display: flex;
-    gap: 60px;
-    white-space: nowrap;
-    font-family: var(--display);
-    font-size: 2.2rem;
-    text-transform: uppercase;
-    animation: marquee 26s linear infinite;
-    line-height: 1;
-}
-.band-track span::after { content: '/'; color: var(--ember); margin: 0 60px; }
-@keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-}
-
-/* EXPANDABLE SECTIONS */
-.expandable-section { margin-bottom: 20px; }
-.expandable-header {
-    background: transparent;
-    padding: 20px 0;
-    border-bottom: 1px solid var(--line-strong);
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: all 0.3s ease;
-}
-.expandable-header:hover { border-bottom-color: var(--ember); }
-.expandable-header h4 {
-    font-family: var(--display);
-    font-size: 1.4rem;
-    text-transform: uppercase;
-    color: var(--ink);
-    letter-spacing: -0.01em;
-}
-.expandable-header .icon {
-    font-size: 1.8rem;
-    color: var(--ember);
-    transition: transform 0.3s ease;
-    font-weight: 300;
-    line-height: 1;
-}
-.expandable-header.active .icon { transform: rotate(45deg); }
-.expandable-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
-    padding: 0;
-}
-.expandable-content.active { max-height: 1500px; padding: 24px 0; }
-.expandable-content p {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: var(--ink-soft);
-    margin-bottom: 16px;
-}
-.scripture-ref {
-    display: block;
-    font-family: var(--serif-it);
-    font-style: italic;
-    font-size: 0.95rem;
-    color: var(--ember);
-    margin-top: 12px;
-}
-
-/* FOUNDER */
-.founder-row {
-    display: grid;
-    grid-template-columns: 360px 1fr;
-    gap: 80px;
-    align-items: center;
-    margin-top: 50px;
-}
-.founder-photo-wrap { position: relative; }
-.founder-photo-frame {
-    position: relative;
-    border: 3px solid var(--ink);
-    overflow: hidden;
-    aspect-ratio: 3/4;
-    max-width: 360px;
-}
-.founder-photo-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(0.5) sepia(0.2) contrast(1.05);
-    transition: filter 0.4s ease;
-}
-.founder-photo-frame:hover img { filter: grayscale(0.15) sepia(0.1) contrast(1.1); }
-.founder-label {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    background: var(--ink);
-    color: var(--paper);
-    padding: 16px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 12px;
-}
-.founder-label-name {
-    font-family: var(--hand);
-    font-size: 1.7rem;
-    color: var(--paper);
-    line-height: 1;
-}
-.founder-label-role {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ember);
-    border: 1px solid var(--ember);
-    padding: 4px 8px;
-    white-space: nowrap;
-}
-.founder-hand-note {
-    position: absolute;
-    top: -24px; right: -12px;
-    font-family: var(--hand);
-    font-size: 1.3rem;
-    color: var(--ember);
-    transform: rotate(5deg);
-}
-.founder-text h3 {
-    font-family: var(--display);
-    font-size: clamp(2rem, 3.5vw, 3rem);
-    line-height: 0.95;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
-    margin-bottom: 22px;
-    color: var(--ink);
-}
-.founder-text h3 .accent { color: var(--ember); }
-.founder-text p {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: var(--ink-soft);
-    margin-bottom: 16px;
-}
-
-@media (max-width: 900px) {
-    .founder-row { grid-template-columns: 1fr; gap: 50px; max-width: 460px; margin: 50px auto 0; }
-    .founder-photo-frame { max-width: 320px; margin: 0 auto; }
-}
-
-/* REVEAL */
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
-.reveal.in { opacity: 1; transform: translateY(0); }
-    </style>
-</head>
-<body>
-    <div id="ignite-nav-root"></div>
-    <div id="ignite-modal-root"></div>
-
-    <!-- HERO -->
-    <section class="about-hero">
-        <div class="hero-bg">
-            <img src="about-hero.jpg" alt="Ignite Belize in action" />
-        </div>
-        <div class="hero-content">
-            <div class="container">
-                <div class="section-tag">About Ignite Belize</div>
-                <h1>
-                    <span class="who-we">who we are</span>
-                    A<span class="accent"> Generation</span><br>On Mission
-                </h1>
-                <p class="lead">
-                    A community of Gen-Z
-                    <span class="hero-hand-note">movement makers</span>
-                    ready to give it all for the One who gave His all.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <div class="sub-nav">
-        <div class="container">
-            <a href="#about-section" class="active"><span class="num">01</span>About Us</a>
-            <a href="#faith-section"><span class="num">02</span>Statement of Faith</a>
-        </div>
-    </div>
-
-    <!-- WHAT WE'RE ABOUT -->
-    <section id="about-section">
-        <div class="container">
-            <div class="section-tag">What we're about</div>
-            <h2 class="section-title">Movement <span class="accent">makers</span> <span class="hand">+ flame keepers</span></h2>
-            <p class="section-lead">Four convictions that shape why we exist, what we're aiming at, and the heart behind every Worship Burn, Launch, and evangelism initiative.</p>
-            <div class="belief-grid">
-                <div class="card-invert reveal">
-                    <span>// 01 — Mission</span>
-                    <h3>Our Mission</h3>
-                    <p>Ignite Belize exists to launch Gen-Z #movementmakers in Belize and beyond. We believe that this generation is called to be the catalysts of spiritual awakening, carrying the fire of God's presence into every sphere of society.</p>
-                </div>
-                <div class="card-invert reveal">
-                    <span>// 02 — Vision</span>
-                    <h3>Our Vision</h3>
-                    <p>To see a generation of young people in Belize fully alive in Christ, equipped to lead, and ignited with passion to transform their communities through the power of the Gospel. In Belize as in heaven.</p>
-                </div>
-                <div class="card-invert reveal">
-                    <span>// 03 — Practice</span>
-                    <h3>What We Do</h3>
-                    <p>Through our three core programs—Worship Burns, Launch, and evangelism initiatives—we create spaces for Gen-Z to encounter God, develop as leaders, and be mobilized for evangelism and outreach. We believe in worship, community, and encounter as the foundations for spiritual growth.</p>
-                </div>
-                <div class="card-invert card-culture reveal">
-                    <div>
-                        <span>// 04 — Culture</span>
-                        <h3>Our Culture</h3>
-                        <p>The values that shape how we live, lead, and love one another. This isn't a program — it's a family on fire.</p>
-                        <p style="font-family: var(--hand); font-size: 1.35rem; color: var(--ember); margin-top: 10px; display: inline-block; transform: rotate(-1.5deg);">This is who we are.</p>
-                    </div>
-                    <div class="culture-grid">
-                        <div class="culture-item">
-                            <h4>Radical Surrender</h4>
-                            <p>We hold nothing back. Everything laid at His feet.</p>
-                            <span class="ref">Romans 12:1</span>
-                        </div>
-                        <div class="culture-item">
-                            <h4>Holy Boldness</h4>
-                            <p>We preach, pray, and go — without apology.</p>
-                            <span class="ref">Acts 4:31</span>
-                        </div>
-                        <div class="culture-item">
-                            <h4>Deep Community</h4>
-                            <p>We do life together. Iron sharpens iron.</p>
-                            <span class="ref">Proverbs 27:17</span>
-                        </div>
-                        <div class="culture-item">
-                            <h4>Kingdom Hunger</h4>
-                            <p>We seek His Kingdom first — in every room, every city.</p>
-                            <span class="ref">Matthew 6:33</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="band" aria-hidden="true">
-        <div class="band-track">
-            <span>In Belize As In Heaven</span>
-            <span>In Belize As In Heaven</span>
-            <span>In Belize As In Heaven</span>
-            <span>In Belize As In Heaven</span>
-            <span>In Belize As In Heaven</span>
-        </div>
-    </div>
-
-    <!-- FOUNDER SECTION -->
-    <section style="background:var(--paper-2);">
-        <div class="container">
-            <div class="founder-row">
-                <div class="founder-photo-wrap reveal">
-                    <div class="founder-photo-frame">
-                        <img src="founder-photo.jpg" alt="Brent Heavener, Founder of Ignite Belize" />
-                        <div class="founder-label">
-                            <span class="founder-label-name">Brent Heavener</span>
-                            <span class="founder-label-role">Founder</span>
-                        </div>
-                    </div>
-                    <span class="founder-hand-note">leading the charge ↓</span>
-                </div>
-                <div class="founder-text reveal">
-                    <div class="section-tag">Who's behind it</div>
-                    <h3>Disciples carrying <span class="accent">fire</span></h3>
-                    <p>Ignite Belize is led by disciples who believe Belize is on the edge of revival. We don't see ourselves as professionals running a program — we see ourselves as flame keepers, walking with Gen-Z one encounter at a time.</p>
-                    <p>Brent Heavener servant-leads the work on the ground in Spanish Lookout, alongside his incredible team of passionate Gen-Z lovers of Jesus — a growing community of young leaders saying yes to whatever God asks next.</p>
-                    <p style="font-family: var(--hand); font-size: 1.4rem; color: var(--ember); transform: rotate(-1deg); display: inline-block; margin-top: 8px;">"In Belize as in heaven."</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- STATEMENT OF FAITH -->
-    <section id="faith-section" style="background: var(--paper-2);">
-        <div class="container">
-            <div class="section-tag">Statement of Faith</div>
-            <h2 class="section-title">What We <span class="accent">Believe</span></h2>
-            <p class="section-lead">At Ignite Movement Belize, we hold to these foundational beliefs rooted in Scripture and the gospel of Jesus Christ.</p>
-
-            <div class="belief-grid" style="margin-bottom: 80px;">
-                <div class="card-invert reveal">
-                    <span>// Faith 01</span>
-                    <h3>Jesus is God</h3>
-                    <p>Jesus Christ is eternally God, together with the Father and the Holy Spirit from the beginning. Through Him all things were made. He became incarnate by the Holy Spirit through the virgin Mary for man's redemption, and is forever one Christ with two natures—God and man.</p>
-                    <span class="culture-scripture">John 1:1-14 | John 3:16</span>
-                </div>
-                <div class="card-invert reveal">
-                    <span>// Faith 02</span>
-                    <h3>The Bible is God's Word</h3>
-                    <p>The Bible, containing the Old and New Testaments, is the only infallible, inspired Word of God. Its authority is ultimate, final, and eternal. It cannot be added to, subtracted from, or superseded. The Bible is the source of all doctrine, instruction, correction, and reproof.</p>
-                    <span class="culture-scripture">2 Timothy 3:16 | Hebrews 4:12</span>
-                </div>
-                <div class="card-invert reveal">
-                    <span>// Faith 03</span>
-                    <h3>The Holy Spirit</h3>
-                    <p>The Holy Spirit is God, the Lord and giver of life. He was active in the Old Testament and given to the Church in fullness at Pentecost. He empowers the saints for service, cleanses from the old nature, and conforms us to the image of Christ.</p>
-                    <span class="culture-scripture">1 Corinthians 12:1-11 | Acts 2:1-18</span>
-                </div>
-                <div class="card-invert reveal">
-                    <span>// Faith 04</span>
-                    <h3>Biblical Marriage</h3>
-                    <p>We believe in unconditional love for everyone while remaining loyal to God's Word. God established marriage as a sacred covenant between one man and one woman. This definition has been foundational to human relationships throughout history.</p>
-                    <span class="culture-scripture">Genesis 2:18-25 | Ephesians 5:22-33</span>
-                </div>
-            </div>
-
-            <div style="margin-top: 60px;">
-                <h3 class="section-title" style="font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 40px;">Truths from <span class="accent">Scripture</span></h3>
-
-                <div class="expandable-section reveal">
-                    <div class="expandable-header" onclick="toggleExpand(this)">
-                        <h4>God the Father</h4>
-                        <span class="icon">+</span>
-                    </div>
-                    <div class="expandable-content">
-                        <p>God the Father is the creator and sustainer of all things, created in love. He created man in His own image for fellowship and called man back to Himself through Christ after the rebellion and fall of man.</p>
-                        <span class="scripture-ref">Genesis 1:1 | John 3:16 | Romans 8:14-17 | Ephesians 1:3-6</span>
-                    </div>
-                </div>
-
-                <div class="expandable-section reveal">
-                    <div class="expandable-header" onclick="toggleExpand(this)">
-                        <h4>The Son, Jesus</h4>
-                        <span class="icon">+</span>
-                    </div>
-                    <div class="expandable-content">
-                        <p>Jesus Christ is eternally God, together with the Father and the Holy Spirit from the beginning. Through Him all things were made. For man's redemption, He left heaven and became incarnate by the Holy Spirit through the virgin Mary; He is forever one Christ with two natures—God and man—in one person.</p>
-                        <span class="scripture-ref">John 1:1-14 | Romans 1:1-4 | John 3:16 | Matthew 28:18-20</span>
-                    </div>
-                </div>
-
-                <div class="expandable-section reveal">
-                    <div class="expandable-header" onclick="toggleExpand(this)">
-                        <h4>The Holy Spirit</h4>
-                        <span class="icon">+</span>
-                    </div>
-                    <div class="expandable-content">
-                        <p>The Holy Spirit is God, the Lord and giver of life, who was active in the Old Testament and given to the Church in fullness at Pentecost. He empowers the saints for service and witness, cleanses from the old nature and conforms us to the image of Christ. The baptism in the Holy Spirit releases fullness and is evidenced by fruits and gifts.</p>
-                        <span class="scripture-ref">1 Corinthians 12:1-11 | Luke 11:13 | John 7:37-39 | Acts 2:1-18</span>
-                    </div>
-                </div>
-
-                <div class="expandable-section reveal">
-                    <div class="expandable-header" onclick="toggleExpand(this)">
-                        <h4>The Holy Scriptures (Bible)</h4>
-                        <span class="icon">+</span>
-                    </div>
-                    <div class="expandable-content">
-                        <p>The Bible, containing the Old and New Testaments, is alone the only infallible, inspired Word of God, and its authority is ultimate, final, and eternal. It cannot be added to, subtracted from, or superseded in any regard. The Bible is the source of all doctrine, instruction, correction, and reproof.</p>
-                        <span class="scripture-ref">2 Timothy 3:16 | Hebrews 4:12 | 1 Peter 1:23-25 | 2 Peter 1:19-21</span>
-                    </div>
-                </div>
-
-                <div class="expandable-section reveal">
-                    <div class="expandable-header" onclick="toggleExpand(this)">
-                        <h4>The Atonement</h4>
-                        <span class="icon">+</span>
-                    </div>
-                    <div class="expandable-content">
-                        <p>Christ's vicarious death on the cross paid the penalty for the sins of the whole world, but its benefits are only applicable to those who receive Jesus as their personal Savior. Healing—body, soul, and spirit—and all of God's provisions for His saints, are provided in the atonement.</p>
-                        <span class="scripture-ref">Acts 4:12 | Romans 4:1-9, 5:1-11 | Ephesians 1:3-14</span>
-                    </div>
-                </div>
-
-                <div class="expandable-section reveal">
-                    <div class="expandable-header" onclick="toggleExpand(this)">
-                        <h4>The Fall of Man</h4>
-                        <span class="icon">+</span>
-                    </div>
-                    <div class="expandable-content">
-                        <p>Man, in his natural state, is a sinner—lost, undone, without hope, and without God. As God's most precious creation, God gave His very best for each and every human to ever be born, but it is up to each individual to receive Him.</p>
-                        <span class="scripture-ref">Romans 3:19-23 | Galatians 3:22 | Ephesians 2:1-2, 12</span>
-                    </div>
-                </div>
-
-                <div class="expandable-section reveal">
-                    <div class="expandable-header" onclick="toggleExpand(this)">
-                        <h4>Baptism of the Holy Spirit</h4>
-                        <span class="icon">+</span>
-                    </div>
-                    <div class="expandable-content">
-                        <p>The baptism in the Holy Spirit, with the primary evidence of speaking in other tongues as the Spirit gives utterance, is for all believers as promised by John the Baptist, Jesus, and Peter. This was witnessed by early disciples and operates in present-day disciples of Jesus Christ.</p>
-                        <span class="scripture-ref">1 Corinthians 14 | Matthew 3:11 | Acts 1:4-8 | Acts 2:38-41</span>
-                    </div>
-                </div>
-
-                <div class="expandable-section reveal">
-                    <div class="expandable-header" onclick="toggleExpand(this)">
-                        <h4>Salvation</h4>
-                        <span class="icon">+</span>
-                    </div>
-                    <div class="expandable-content">
-                        <p>Salvation is a free gift of God, based on the merits of the death of His Son, and is appropriated by faith. It is effected by personal repentance, belief in the Lord Jesus, and personal acceptance of Him as Lord and Savior.</p>
-                        <span class="scripture-ref">Acts 4:12 | Romans 4:1-9, 5:1-11 | Ephesians 1:3-14</span>
-                    </div>
-                </div>
-
-                <div class="expandable-section reveal">
-                    <div class="expandable-header" onclick="toggleExpand(this)">
-                        <h4>The Christian Life</h4>
-                        <span class="icon">+</span>
-                    </div>
-                    <div class="expandable-content">
-                        <p>The Christian life is filled with trials, tests, and warfare against a spiritual enemy. For those abiding in Christ until death or His return, the promises of eternal blessing in the presence of God are assured. It requires dependence on the Holy Spirit and willingness to die to personal desires.</p>
-                        <span class="scripture-ref">Matthew 7:21 | Romans 12:1-3 | 2 Corinthians 6:17 | Galatians 6:14</span>
-                    </div>
-                </div>
-
-                <div class="expandable-section reveal">
-                    <div class="expandable-header" onclick="toggleExpand(this)">
-                        <h4>The Church</h4>
-                        <span class="icon">+</span>
-                    </div>
-                    <div class="expandable-content">
-                        <p>The goal of the Church is to fulfill the Great Commission—make disciples of all nations and present the saints complete in Christ. The five-fold ministry of Ephesians 4 governs the Church, along with elders and deacons.</p>
-                        <span class="scripture-ref">Matthew 28:19-20 | 1 Corinthians 12:12-31 | Ephesians 4:15, 5:22-32 | 1 Timothy 3:15</span>
-                    </div>
-                </div>
-
-                <div class="expandable-section reveal">
-                    <div class="expandable-header" onclick="toggleExpand(this)">
-                        <h4>Divine Healing</h4>
-                        <span class="icon">+</span>
-                    </div>
-                    <div class="expandable-content">
-                        <p>God has used doctors, medicines, and natural means as channels of healing. Divine healing is provided for believers in the atonement made by Jesus' blood shed on the cross. Divine healing may be received by laying on of hands, prayer of an anointed person, or by receiving this provision directly by faith.</p>
-                        <span class="scripture-ref">Isaiah 53:5 | 1 Peter 2:24 | James 5:14-16 | Mark 11:23-24</span>
-                    </div>
-                </div>
-
-                <div class="expandable-section reveal">
-                    <div class="expandable-header" onclick="toggleExpand(this)">
-                        <h4>Eschatology (End Times)</h4>
-                        <span class="icon">+</span>
-                    </div>
-                    <div class="expandable-content">
-                        <p>We affirm the bodily, personal, second coming of the Lord Jesus Christ, the resurrection of the saints, the millennium, and the final judgment. The final judgment will determine the eternal status of saints and unbelievers based on their relationship with God through Jesus Christ.</p>
-                        <span class="scripture-ref">Acts 1:10-11 | 1 Thessalonians 4:13-18 | 2 Thessalonians 1:7-10 | Revelation 1:7</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div id="ignite-footer-root"></div>
-
-    <script src="navigation.js"></script>
-    <script>
-        // Scroll reveal
-        const io = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-                if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-            });
-        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', (e) => {
-                const id = a.getAttribute('href');
-                if (id.length > 1) {
-                    const target = document.querySelector(id);
-                    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-                }
-            });
-        });
-
-        // Expandable sections
-        function toggleExpand(element) {
-            const content = element.nextElementSibling;
-            element.classList.toggle('active');
-            content.classList.toggle('active');
+/**
+ * Ignite Belize — navigation.js
+ * Injects header, footer, modals, and all nav styles globally
+ * Works with nav-styles.css on every page
+ */
+
+(function() {
+    // CSS styles for nav, footer, and modals
+    const styles = `
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-    </script>
-</body>
-</html>
+
+        :root {
+            --paper: #f1ece1;
+            --paper-2: #e8e1d2;
+            --ink: #14110d;
+            --ink-soft: #2a251e;
+            --ink-dim: #6b6356;
+            --ink-faint: #a39a87;
+            --ember: #c8a439;
+            --ember-bright: #e8c050;
+            --line: rgba(20, 17, 13, 0.12);
+            --line-strong: rgba(20, 17, 13, 0.24);
+            --display: 'Anton', Impact, sans-serif;
+            --body: 'Inter', system-ui, sans-serif;
+            --mono: 'JetBrains Mono', 'Courier New', monospace;
+            --hand: 'Caveat', cursive;
+            --serif-it: 'Playfair Display', serif;
+        }
+
+        /* HEADER STYLES */
+        .ignite-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 72px;
+            background: var(--paper);
+            border-bottom: 1px solid var(--line-strong);
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+        }
+
+        @media (max-width: 700px) {
+            .ignite-header {
+                height: 64px;
+                padding: 0 20px;
+            }
+        }
+
+        .ignite-header-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            height: 100%;
+        }
+
+        .ignite-header-logo img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        @media (max-width: 700px) {
+            .ignite-header-logo img {
+                height: 32px;
+            }
+        }
+
+        .ignite-header-logo-text {
+            font-family: var(--display);
+            font-size: 1.4rem;
+            color: var(--ink);
+            text-decoration: none;
+            letter-spacing: -0.01em;
+            font-weight: 700;
+        }
+
+        .ignite-nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            height: 100%;
+        }
+
+        .ignite-nav-links a {
+            font-family: var(--body);
+            font-size: 0.95rem;
+            color: var(--ink);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .ignite-nav-links a:hover {
+            color: var(--ember);
+        }
+
+        .ignite-nav-links a.active {
+            color: var(--ember);
+            border-bottom: 2px solid var(--ember);
+        }
+
+        .ignite-nav-cta {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            height: 100%;
+        }
+
+        .ignite-nav-cta a {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--ink);
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid var(--ink);
+            transition: all 0.2s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            height: auto;
+        }
+
+        .ignite-nav-cta a:hover {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .ignite-nav-cta a.primary {
+            background: var(--ember);
+            color: var(--ink);
+            border-color: var(--ember);
+        }
+
+        .ignite-nav-cta a.primary:hover {
+            background: var(--ember-bright);
+        }
+
+        .ignite-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--ink);
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ignite-menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--ink);
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 800px) {
+            .ignite-nav-links {
+                display: none;
+            }
+
+            .ignite-menu-toggle {
+                display: flex;
+            }
+        }
+
+        /* FOOTER STYLES */
+        .ignite-footer {
+            background: var(--ink);
+            color: var(--paper);
+            padding: 80px 32px 40px;
+            margin-top: 140px;
+        }
+
+        @media (max-width: 700px) {
+            .ignite-footer {
+                padding: 60px 20px 32px;
+                margin-top: 80px;
+            }
+        }
+
+        .ignite-footer-container {
+            max-width: 1320px;
+            margin: 0 auto;
+        }
+
+        .ignite-footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 48px;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 1000px) {
+            .ignite-footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .ignite-footer-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        .ignite-footer-col h4 {
+            font-family: var(--display);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            color: var(--ember);
+            letter-spacing: -0.01em;
+        }
+
+        .ignite-footer-col ul {
+            list-style: none;
+        }
+
+        .ignite-footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .ignite-footer-col ul li a {
+            color: rgba(241, 236, 225, 0.75);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .ignite-footer-col ul li a:hover {
+            color: var(--ember);
+        }
+
+        .ignite-footer-bottom {
+            border-top: 1px solid var(--line-strong);
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media (max-width: 600px) {
+            .ignite-footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+
+        .ignite-footer-bottom p {
+            font-size: 0.9rem;
+            color: rgba(241, 236, 225, 0.6);
+        }
+
+        .ignite-footer-social {
+            display: flex;
+            gap: 16px;
+        }
+
+        .ignite-footer-social a {
+            color: var(--paper);
+            text-decoration: none;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(241, 236, 225, 0.3);
+            border-radius: 50%;
+            transition: all 0.2s ease;
+            font-size: 1.1rem;
+        }
+
+        .ignite-footer-social a:hover {
+            border-color: var(--ember);
+            color: var(--ember);
+        }
+
+        /* MODAL STYLES */
+        .ignite-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 17, 13, 0.5);
+            z-index: 10000;
+        }
+
+        .ignite-modal-overlay.active {
+            display: block;
+        }
+
+        .ignite-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--paper);
+            z-index: 10001;
+            border: 2px solid var(--ink);
+            max-width: 500px;
+            width: 90%;
+            padding: 40px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .ignite-modal.active {
+            display: block;
+        }
+
+        .ignite-modal h2 {
+            font-family: var(--display);
+            font-size: 2rem;
+            margin-bottom: 16px;
+            color: var(--ink);
+        }
+
+        .ignite-modal p {
+            color: var(--ink-soft);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .ignite-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--ink);
+            cursor: pointer;
+        }
+    `;
+
+    // Inject styles
+    function injectStyles() {
+        const styleEl = document.createElement('style');
+        styleEl.textContent = styles;
+        document.head.appendChild(styleEl);
+    }
+
+    // Create and inject header
+    function injectHeader() {
+        const navRoot = document.getElementById('ignite-nav-root');
+        if (!navRoot) return;
+
+        const header = document.createElement('header');
+        header.className = 'ignite-header';
+        header.innerHTML = `
+            <a href="index.html" class="ignite-header-logo">
+                <img src="Ignite-Logo-New-White.png" alt="Ignite Belize" style="height: 40px; width: auto;">
+            </a>
+            <nav class="ignite-nav-links">
+                <a href="index.html">Home</a>
+                <a href="about-us.html">About</a>
+                <a href="statement-of-faith.html">Faith</a>
+                <a href="donate.html">Donate</a>
+            </nav>
+            <div class="ignite-nav-cta">
+                <a href="mailto:info@ignitebelize.org">Contact</a>
+            </div>
+            <button class="ignite-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        `;
+        navRoot.appendChild(header);
+    }
+
+    // Create and inject footer
+    function injectFooter() {
+        const footerRoot = document.getElementById('ignite-footer-root');
+        if (!footerRoot) return;
+
+        const footer = document.createElement('footer');
+        footer.className = 'ignite-footer';
+        footer.innerHTML = `
+            <div class="ignite-footer-container">
+                <div class="ignite-footer-grid">
+                    <div class="ignite-footer-col">
+                        <h4>About</h4>
+                        <ul>
+                            <li><a href="about-us.html">Who We Are</a></li>
+                            <li><a href="statement-of-faith.html">Statement of Faith</a></li>
+                            <li><a href="index.html#programs">Our Programs</a></li>
+                        </ul>
+                    </div>
+                    <div class="ignite-footer-col">
+                        <h4>Get Involved</h4>
+                        <ul>
+                            <li><a href="donate.html">Donate</a></li>
+                            <li><a href="mailto:info@ignitebelize.org">Reach Out</a></li>
+                            <li><a href="index.html">Events</a></li>
+                        </ul>
+                    </div>
+                    <div class="ignite-footer-col">
+                        <h4>Location</h4>
+                        <ul>
+                            <li>Spanish Lookout</li>
+                            <li>Cayo District</li>
+                            <li>Belize</li>
+                        </ul>
+                    </div>
+                    <div class="ignite-footer-col">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li><a href="mailto:info@ignitebelize.org">info@ignitebelize.org</a></li>
+                            <li><a href="#">Instagram</a></li>
+                            <li><a href="#">Facebook</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="ignite-footer-bottom">
+                    <p>&copy; 2026 Ignite Belize. All rights reserved. | <a href="#" style="color: rgba(241, 236, 225, 0.6); text-decoration: none;">Privacy</a></p>
+                    <div class="ignite-footer-social">
+                        <a href="#" title="Instagram">📱</a>
+                        <a href="#" title="Facebook">f</a>
+                        <a href="mailto:info@ignitebelize.org" title="Email">✉</a>
+                    </div>
+                </div>
+            </div>
+        `;
+        footerRoot.appendChild(footer);
+    }
+
+    // Create and inject modal container
+    function injectModal() {
+        const modalRoot = document.getElementById('ignite-modal-root');
+        if (!modalRoot) return;
+
+        const overlay = document.createElement('div');
+        overlay.className = 'ignite-modal-overlay';
+        overlay.id = 'ignite-modal-overlay';
+
+        const modal = document.createElement('div');
+        modal.className = 'ignite-modal';
+        modal.id = 'ignite-modal';
+        modal.innerHTML = `
+            <button class="ignite-modal-close" onclick="document.getElementById('ignite-modal-overlay').classList.remove('active'); document.getElementById('ignite-modal').classList.remove('active');">&times;</button>
+            <h2 id="ignite-modal-title">Modal Title</h2>
+            <div id="ignite-modal-content"></div>
+        `;
+
+        modalRoot.appendChild(overlay);
+        modalRoot.appendChild(modal);
+
+        // Close modal when overlay is clicked
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+                modal.classList.remove('active');
+            }
+        });
+    }
+
+    // Set active nav link
+    function setActiveNav() {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('.ignite-nav-links a').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    }
+
+    // Initialize everything when DOM is ready
+    function init() {
+        injectStyles();
+        injectHeader();
+        injectFooter();
+        injectModal();
+        setActiveNav();
+    }
+
+    // Run when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
