@@ -1,6 +1,9 @@
+/**
+ * Ignite Belize — Shared Navigation + Footer + Volunteer Modal
+ */
 (function () {
 
-  var LOGO_URL = "https://raw.githubusercontent.com/Ignitemvmt/Ignite-Site/main/Ignite-Logo-New-White.png";
+  var LOGO = LOGO /* paste your existing base64 logo string here */;
 
   var path = window.location.pathname;
   function active(href) {
@@ -24,7 +27,7 @@
 
   var navHTML = '<nav id="mainNav">' +
     '<a href="index.html" class="nav-brand">' +
-      '<img src="' + LOGO_URL + '" alt="Ignite Belize" class="nav-logo-img">' +
+      '<img src="data:image/png;base64,' + LOGO + '" alt="Ignite Belize" class="nav-logo-img">' +
     '</a>' +
     '<ul class="nav-links">' + navLinkItems +
       '<li><a href="https://ignitebelize.org/donate" class="cta">Donate</a></li>' +
@@ -70,7 +73,7 @@
         '</div>' +
       '</div>' +
       '<div class="footer-bottom">' +
-        '<span>© 2026 Ignite Movement Belize</span>' +
+        '<span>\u00A9 2026 Ignite Movement Belize</span>' +
         '<span>Spanish Lookout, BZ</span>' +
       '</div>' +
     '</div>' +
@@ -126,7 +129,6 @@
   var style = document.createElement('style');
   style.textContent = `
     :root {
-      --nav-bg: #0a0805;
       --nav-accent: #c8a439;
       --nav-text: #f1ece1;
       --nav-text-dim: rgba(241,236,225,0.6);
@@ -135,7 +137,8 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       padding: 16px 32px;
       background: rgba(10,8,5,0.92);
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(200,164,57,0.18);
       display: flex; justify-content: space-between; align-items: center;
       transition: padding 0.3s ease, background 0.3s ease;
@@ -146,7 +149,7 @@
     .nav-logo-img { height: 40px; width: auto; display: block; object-fit: contain; }
     .nav-links { display: flex; list-style: none; gap: 4px; margin: 0; padding: 0; }
     .nav-links a {
-      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-family: 'JetBrains Mono','Courier New',monospace;
       font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
       color: var(--nav-text); text-decoration: none; padding: 8px 14px;
       transition: color 0.2s; display: block;
@@ -159,7 +162,7 @@
       padding: 10px 18px; margin-left: 8px; font-weight: 700;
     }
     .nav-links a.cta::before { display: none; }
-    .nav-links a.cta:hover { background: #e8c050; color: #0a0805; }
+    .nav-links a.cta:hover { background: #e8c050; }
     .nav-toggle {
       display: none; background: none; border: none; cursor: pointer;
       width: 36px; height: 28px; flex-direction: column;
@@ -178,9 +181,10 @@
     }
     .mobile-menu.active { transform: translateY(0); }
     .mobile-menu a {
-      font-family: 'Anton', 'Bebas Neue', Impact, sans-serif;
-      font-size: 2.8rem; text-transform: uppercase; color: var(--nav-text);
-      text-decoration: none; letter-spacing: 0.02em; transition: color 0.2s;
+      font-family: 'Anton',Impact,sans-serif;
+      font-size: 2.8rem; text-transform: uppercase;
+      color: var(--nav-text); text-decoration: none;
+      letter-spacing: 0.02em; transition: color 0.2s;
     }
     .mobile-menu a:hover { color: var(--nav-accent); }
     .site-footer {
@@ -190,14 +194,13 @@
     .footer-inner { max-width: 1320px; margin: 0 auto; padding: 0 32px; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
     .footer-brand h3 {
-      font-family: 'Anton', 'Bebas Neue', Impact, sans-serif;
-      font-size: 2.4rem; text-transform: uppercase; line-height: 1;
-      margin: 0 0 14px 0; color: #f1ece1;
+      font-family: 'Anton',Impact,sans-serif; font-size: 2.4rem;
+      text-transform: uppercase; line-height: 1; margin: 0 0 14px 0; color: #f1ece1;
     }
     .footer-accent { color: var(--nav-accent); }
     .footer-brand p { color: rgba(241,236,225,0.6); font-size: 0.95rem; max-width: 360px; line-height: 1.6; margin: 0; }
     .footer-col h4 {
-      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-family: 'JetBrains Mono','Courier New',monospace;
       font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
       color: var(--nav-accent); margin: 0 0 18px 0;
     }
@@ -207,10 +210,10 @@
     .footer-col a:hover { color: var(--nav-accent); }
     .footer-bottom {
       padding-top: 30px; border-top: 1px solid rgba(241,236,225,0.12);
-      display: flex; justify-content: space-between;
-      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      font-family: 'JetBrains Mono','Courier New',monospace;
       font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: rgba(241,236,225,0.4); flex-wrap: wrap; gap: 12px;
+      color: rgba(241,236,225,0.4);
     }
     .volunteer-overlay {
       position: fixed; inset: 0; background: rgba(10,8,5,0.85);
@@ -233,12 +236,12 @@
     }
     .volunteer-modal-close:hover { color: var(--nav-accent); }
     .volunteer-modal h2 {
-      font-family: 'Anton', 'Bebas Neue', Impact, sans-serif;
-      font-size: 2.2rem; text-transform: uppercase; color: #f1ece1; margin: 0 0 32px 0;
+      font-family: 'Anton',Impact,sans-serif; font-size: 2.2rem;
+      text-transform: uppercase; color: #f1ece1; margin: 0 0 32px 0;
     }
     .volunteer-form-group { margin-bottom: 28px; }
     .volunteer-form-label {
-      display: block; font-family: 'JetBrains Mono', 'Courier New', monospace;
+      display: block; font-family: 'JetBrains Mono','Courier New',monospace;
       font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
       color: var(--nav-accent); margin-bottom: 14px;
     }
@@ -256,7 +259,7 @@
     .volunteer-input:focus { border-color: var(--nav-accent); }
     .volunteer-submit {
       width: 100%; background: var(--nav-accent); color: #0a0805; border: none;
-      padding: 16px; font-family: 'Anton', 'Bebas Neue', Impact, sans-serif;
+      padding: 16px; font-family: 'Anton',Impact,sans-serif;
       font-size: 1.1rem; letter-spacing: 0.1em; text-transform: uppercase;
       cursor: pointer; transition: background 0.2s; margin-top: 8px;
     }
@@ -264,8 +267,8 @@
     .volunteer-success { display: none; text-align: center; padding: 40px 0; }
     .volunteer-success.show { display: block; }
     .volunteer-success h3 {
-      font-family: 'Anton', 'Bebas Neue', Impact, sans-serif;
-      font-size: 2rem; color: var(--nav-accent); text-transform: uppercase; margin: 0 0 12px 0;
+      font-family: 'Anton',Impact,sans-serif; font-size: 2rem;
+      color: var(--nav-accent); text-transform: uppercase; margin: 0 0 12px 0;
     }
     .volunteer-success p { color: rgba(241,236,225,0.8); }
     @media (max-width: 900px) {
@@ -274,8 +277,7 @@
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
     }
     @media (max-width: 700px) {
-      #mainNav { padding: 12px 20px; }
-      #mainNav.scrolled { padding: 10px 20px; }
+      #mainNav, #mainNav.scrolled { padding: 12px 20px; }
       .footer-grid { grid-template-columns: 1fr; gap: 32px; }
       .footer-inner { padding: 0 20px; }
       .volunteer-modal { padding: 32px 24px; }
