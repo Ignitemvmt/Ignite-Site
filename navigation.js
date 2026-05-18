@@ -3,7 +3,7 @@
  */
 (function () {
 
-  var LOGO = LOGO /* paste your existing base64 logo string here */;
+  var LOGO = 'https://raw.githubusercontent.com/Ignitemvmt/Ignite-Site/main/Ignite-Logo-New-White.png';
 
   var path = window.location.pathname;
   function active(href) {
@@ -15,7 +15,6 @@
   var links = [
     { label: 'Home',      href: 'index.html' },
     { label: 'About',     href: 'about-us.html' },
-    { label: 'Contact',   href: 'contact.html' },
     { label: 'Volunteer', href: '#', onclick: 'openVolunteerModal();return false;' },
   ];
 
@@ -27,7 +26,7 @@
 
   var navHTML = '<nav id="mainNav">' +
     '<a href="index.html" class="nav-brand">' +
-      '<img src="data:image/png;base64,' + LOGO + '" alt="Ignite Belize" class="nav-logo-img">' +
+      '<img src="' + LOGO + '" alt="Ignite Belize" class="nav-logo-img">' +
     '</a>' +
     '<ul class="nav-links">' + navLinkItems +
       '<li><a href="https://ignitebelize.org/donate" class="cta">Donate</a></li>' +
@@ -37,7 +36,6 @@
   '<div class="mobile-menu" id="mobileMenu">' +
     '<a href="index.html">Home</a>' +
     '<a href="about-us.html">About</a>' +
-    '<a href="contact.html">Contact</a>' +
     '<a href="#" onclick="openVolunteerModal();return false;">Volunteer</a>' +
     '<a href="https://ignitebelize.org/donate">Donate</a>' +
   '</div>';
@@ -54,7 +52,7 @@
           '<ul>' +
             '<li><a href="index.html">Home</a></li>' +
             '<li><a href="about-us.html">About</a></li>' +
-            '<li><a href="https://ignitebelize.org/donate">Donate</a></li>' +
+            '<li><a href="https://ignitebelize.org/faith">Statement of Faith</a></li>' +
           '</ul>' +
         '</div>' +
         '<div class="footer-col">' +
