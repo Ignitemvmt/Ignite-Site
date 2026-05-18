@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — Ignite Belize</title>
+    <meta name="description" content="Who we are: a Gen-Z movement of disciples raising up movement makers across Belize. 501(c)(3) faith-based nonprofit based in Spanish Lookout.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@700&family=Playfair+Display:ital,wght@1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="nav-styles.css">
+    <style>
+:root {
+    --paper: #f1ece1;
+    --paper-2: #e8e1d2;
+    --ink: #14110d;
+    --ink-soft: #2a251e;
+    --ink-dim: #6b6356;
+    --ember: #c8a439;
+    --line: rgba(20,17,13,0.12);
+    --line-strong: rgba(20,17,13,0.24);
+    --display: 'Anton', Impact, sans-serif;
+    --body: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'Courier New', monospace;
+    --hand: 'Caveat', cursive;
+    --serif-it: 'Playfair Display', serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: var(--body);
+    background: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+}
+body::before {
+    content: '';
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 9999;
+    opacity: 0.45; mix-blend-mode: multiply;
+    background: radial-gradient(circle at 20% 50%, rgba(20,17,13,0.08), transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(20,17,13,0.06), transparent 50%);
+}
+body::after {
+    content: '';
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 9997;
+    background: radial-gradient(ellipse 100% 100% at center, transparent 50%, rgba(20,17,13,0.06) 100%);
+}
+.container { max-width: 1320px; margin: 0 auto; padding: 0 32px; }
+@media (max-width: 700px) { .container { padding: 0 20px; } }
+
+.about-hero {
+    position: relative; height: 100vh;
+    min-height: 600px; max-height: 820px;
+    overflow: hidden; display: flex; align-items: flex-end;
+    margin-top: -72px;
+}
+.hero-bg { position: absolute; inset: 0; z-index: 0; }
+.hero-bg img {
+    width: 100%; height: 100%; object-fit: cover;
+    object-position: center 30%;
+    filter: grayscale(0.4) sepia(0.25) contrast(1.05);
+    loading: lazy;
+}
+.hero-bg::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(20,17,13,0.15) 0%, rgba(20,17,13,0.2) 40%, rgba(20,17,13,0.78) 80%, rgba(20,17,13,0.92) 100%);
+}
+.hero-content { position: relative; z-index: 2; width: 100%; padding: 60px 0 80px; color: var(--paper); }
+.hero-content .section-tag {
+    font-family: var(--mono); font-size: 0.75rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ember); font-weight: 500; margin-bottom: 20px; display: inline-block;
+}
+.hero-content h1 {
+    font-family: var(--display);
+    font-size: clamp(3.8rem, 9vw, 8rem);
+    line-height: 0.9; letter-spacing: -0.01em;
+    text-transform: uppercase; margin-bottom: 22px; color: var(--paper);
+}
+.hero-content h1 .accent { color: var(--ember); }
+.hero-content h1 .who-we {
+    display: block; font-family: var(--serif-it); font-style: italic;
+    font-weight: 700; font-size: 0.28em;
+    color: rgba(241,236,225,0.7); text-transform: none; letter-spacing: 0; margin-bottom: 8px;
+}
+.hero-content .lead { font-size: 1.1rem; color: rgba(241,236,225,0.8); max-width: 500px; line-height: 1.6; }
+.hero-hand-note {
+    font-family: var(--hand); font-size: 1.5rem; color: var(--ember);
+    transform: rotate(-2deg); display: inline-block; margin-left: 4px;
+}
+@media (max-width: 700px) {
+    .about-hero { max-height: 700px; margin-top: -64px; }
+    .hero-content { padding: 40px 0 60px; }
+}
+
+.sub-nav {
+    background: var(--paper-2);
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    position: sticky; top: 64px; z-index: 50;
+}
+.sub-nav .container { padding: 16px 32px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.sub-nav a {
+    font-family: var(--mono); font-size: 0.72rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink); text-decoration: none; padding: 10px 22px;
+    border: 1px solid var(--ink); transition: all 0.2s ease;
+}
+.sub-nav a:hover, .sub-nav a.active { background: var(--ink); color: var(--paper); }
+.sub-nav a .num { color: var(--ember); margin-right: 8px; }
+
+section { position: relative; padding: 140px 0; }
+@media (max-width: 700px) { section { padding: 90px 0; } }
+
+.section-tag {
+    font-family: var(--mono); font-size: 0.75rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ember); font-weight: 500; margin-bottom: 24px; display: inline-block;
+}
+.section-tag::before { content: '//'; margin-right: 12px; opacity: 0.6; }
+.section-title {
+    font-family: var(--display);
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 0.88; letter-spacing: -0.01em;
+    text-transform: uppercase; margin-bottom: 24px; color: var(--ink);
+}
+.section-title .accent { color: var(--ember); }
+.section-title .hand {
+    font-family: var(--hand); font-size: 0.55em; text-transform: none; color: var(--ember);
+    display: inline-block; transform: rotate(-3deg) translateY(-12px); margin: 0 6px;
+}
+.section-lead { font-size: 1.15rem; color: var(--ink-dim); max-width: 640px; margin-bottom: 60px; }
+
+.belief-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; margin-top: 30px; }
+@media (max-width: 800px) { .belief-grid { grid-template-columns: 1fr; } }
+
+.card {
+    background: var(--paper); border: 2px solid var(--ink);
+    padding: 40px 32px; transition: all 0.3s ease;
+}
+.card:hover { background: var(--ink); color: var(--paper); transform: translateY(-4px); }
+.card:hover h3 { color: var(--paper); }
+.card:hover p { color: var(--paper); opacity: 0.85; }
+.card:hover .card-ref { color: rgba(200,164,57,0.85); }
+.card > span {
+    font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--ember); margin-bottom: 16px; display: block;
+}
+.card h3 {
+    font-family: var(--display); font-size: 1.9rem; text-transform: uppercase;
+    line-height: 1; letter-spacing: -0.01em; margin-bottom: 14px;
+    color: var(--ink); transition: color 0.3s ease;
+}
+.card p { font-size: 1rem; line-height: 1.7; color: var(--ink-soft); transition: color 0.3s ease, opacity 0.3s ease; }
+.card-ref { display: block; font-family: var(--serif-it); font-style: italic; font-size: 0.9rem; color: var(--ember); margin-top: 14px; transition: color 0.3s ease; }
+
+.card-culture { grid-column: 1/-1; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+@media (max-width: 800px) { .card-culture { grid-template-columns: 1fr; } }
+
+.culture-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-top: 4px; }
+.culture-item { padding: 18px 20px; border: 1px solid var(--line-strong); background: rgba(20,17,13,0.03); transition: background 0.3s ease; }
+.card:hover .culture-item { border-color: rgba(241,236,225,0.15); background: rgba(241,236,225,0.05); }
+.culture-item h4 { font-family: var(--display); font-size: 1.05rem; text-transform: uppercase; color: var(--ink); margin-bottom: 6px; transition: color 0.3s ease; }
+.card:hover .culture-item h4 { color: var(--paper); }
+.culture-item p { font-size: 0.88rem; color: var(--ink-dim); margin-bottom: 8px; line-height: 1.5; }
+.card:hover .culture-item p { color: rgba(241,236,225,0.7); }
+.culture-item .ref { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ember); text-transform: uppercase; }
+
+.band { background: var(--ink); color: var(--paper); padding: 22px 0; overflow: hidden; }
+.band-track {
+    display: flex; gap: 60px; white-space: nowrap;
+    font-family: var(--display); font-size: 2.2rem; text-transform: uppercase;
+    animation: marquee 26s linear infinite; line-height: 1;
+}
+.band-track span::after { content: '/'; color: var(--ember); margin: 0 60px; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+.founder-row { display: grid; grid-template-columns: 360px 1fr; gap: 80px; align-items: center; margin-top: 50px; }
+.founder-photo-wrap { position: relative; }
+.founder-photo-frame { position: relative; border: 3px solid var(--ink); overflow: hidden; aspect-ratio: 3/4; max-width: 360px; }
+.founder-photo-frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.5) sepia(0.2) contrast(1.05); transition: filter 0.4s ease; loading: lazy; }
+.founder-photo-frame:hover img { filter: grayscale(0.15) sepia(0.1) contrast(1.1); }
+.founder-label { position: absolute; bottom: 0; left: 0; right: 0; background: var(--ink); color: var(--paper); padding: 16px 20px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.founder-label-name { font-family: var(--hand); font-size: 1.7rem; color: var(--paper); line-height: 1; }
+.founder-label-role { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ember); border: 1px solid var(--ember); padding: 4px 8px; white-space: nowrap; }
+.founder-hand-note { position: absolute; top: -24px; right: -12px; font-family: var(--hand); font-size: 1.3rem; color: var(--ember); transform: rotate(5deg); }
+.founder-text h3 { font-family: var(--display); font-size: clamp(2rem,3.5vw,3rem); line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 22px; color: var(--ink); }
+.founder-text h3 .accent { color: var(--ember); }
+.founder-text p { font-size: 1.05rem; line-height: 1.7; color: var(--ink-soft); margin-bottom: 16px; }
+@media (max-width: 900px) {
+    .founder-row { grid-template-columns: 1fr; gap: 50px; max-width: 460px; margin: 50px auto 0; }
+    .founder-photo-frame { max-width: 320px; margin: 0 auto; }
+}
+
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <div id="ignite-nav-root"></div>
+    <div id="ignite-modal-root"></div>
+
+    <section class="about-hero">
+        <div class="hero-bg">
+            <img src="about-hero.jpg" alt="Ignite Belize in action" />
+        </div>
+        <div class="hero-content">
+            <div class="container">
+                <div class="section-tag">About Ignite Belize</div>
+                <h1>
+                    <span class="who-we">who we are</span>
+                    A<span class="accent"> Generation</span><br>On Mission
+                </h1>
+                <p class="lead">
+                    A community of Gen-Z
+                    <span class="hero-hand-note">movement makers</span>
+                    ready to give it all for the One who gave His all.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="sub-nav">
+        <div class="container">
+            <a href="#about-section" class="active"><span class="num">01</span>About Us</a>
+            <a href="faith.html"><span class="num">02</span>Statement of Faith</a>
+        </div>
+    </div>
+
+    <section id="about-section">
+        <div class="container">
+            <div class="section-tag">What we're about</div>
+            <h2 class="section-title">Movement <span class="accent">makers</span> <span class="hand">+ flame keepers</span></h2>
+            <p class="section-lead">Four convictions that shape why we exist, what we're aiming at, and the heart behind every Worship Burn, Launch, and evangelism initiative.</p>
+            <div class="belief-grid">
+                <div class="card reveal">
+                    <span>// 01 — Mission</span>
+                    <h3>Our Mission</h3>
+                    <p>Ignite Belize exists to launch Gen-Z #movementmakers in Belize and beyond. We believe that this generation is called to be the catalysts of spiritual awakening, carrying the fire of God's presence into every sphere of society.</p>
+                </div>
+                <div class="card reveal">
+                    <span>// 02 — Vision</span>
+                    <h3>Our Vision</h3>
+                    <p>To see a generation of young people in Belize fully alive in Christ, equipped to lead, and ignited with passion to transform their communities through the power of the Gospel. In Belize as in heaven.</p>
+                </div>
+                <div class="card reveal">
+                    <span>// 03 — Practice</span>
+                    <h3>What We Do</h3>
+                    <p>Through our three core programs—Worship Burns, Launch, and evangelism initiatives—we create spaces for Gen-Z to encounter God, develop as leaders, and be mobilized for evangelism and outreach. We believe in worship, community, and encounter as the foundations for spiritual growth.</p>
+                </div>
+                <div class="card card-culture reveal">
+                    <div>
+                        <span>// 04 — Culture</span>
+                        <h3>Our Culture</h3>
+                        <p>The values that shape how we live, lead, and love one another. This isn't a program — it's a family on fire.</p>
+                        <p style="font-family:var(--hand);font-size:1.35rem;color:var(--ember);margin-top:10px;display:inline-block;transform:rotate(-1.5deg);">This is who we are.</p>
+                    </div>
+                    <div class="culture-grid">
+                        <div class="culture-item">
+                            <h4>Radical Surrender</h4>
+                            <p>We hold nothing back. Everything laid at His feet.</p>
+                            <span class="ref">Romans 12:1</span>
+                        </div>
+                        <div class="culture-item">
+                            <h4>Holy Boldness</h4>
+                            <p>We preach, pray, and go — without apology.</p>
+                            <span class="ref">Acts 4:31</span>
+                        </div>
+                        <div class="culture-item">
+                            <h4>Deep Community</h4>
+                            <p>We do life together. Iron sharpens iron.</p>
+                            <span class="ref">Proverbs 27:17</span>
+                        </div>
+                        <div class="culture-item">
+                            <h4>Kingdom Hunger</h4>
+                            <p>We seek His Kingdom first — in every room, every city.</p>
+                            <span class="ref">Matthew 6:33</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="band" aria-hidden="true">
+        <div class="band-track">
+            <span>In Belize As In Heaven</span>
+            <span>In Belize As In Heaven</span>
+            <span>In Belize As In Heaven</span>
+            <span>In Belize As In Heaven</span>
+            <span>In Belize As In Heaven</span>
+        </div>
+    </div>
+
+    <section style="background:var(--paper-2);">
+        <div class="container">
+            <div class="founder-row">
+                <div class="founder-photo-wrap reveal">
+                    <div class="founder-photo-frame">
+                        <img src="founder-photo.jpg" alt="Brent Heavener, Founder of Ignite Belize" />
+                        <div class="founder-label">
+                            <span class="founder-label-name">Brent Heavener</span>
+                            <span class="founder-label-role">Founder</span>
+                        </div>
+                    </div>
+                    <span class="founder-hand-note">leading the charge ↓</span>
+                </div>
+                <div class="founder-text reveal">
+                    <div class="section-tag">Who's behind it</div>
+                    <h3>Disciples carrying <span class="accent">fire</span></h3>
+                    <p>Ignite Belize is led by disciples who believe Belize is on the edge of revival. We don't see ourselves as professionals running a program — we see ourselves as flame keepers, walking with Gen-Z one encounter at a time.</p>
+                    <p>Brent Heavener servant-leads the work on the ground in Spanish Lookout, alongside his incredible team of passionate Gen-Z lovers of Jesus — a growing community of young leaders saying yes to whatever God asks next.</p>
+                    <p style="font-family:var(--hand);font-size:1.4rem;color:var(--ember);transform:rotate(-1deg);display:inline-block;margin-top:8px;">"In Belize as in heaven."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="ignite-footer-root"></div>
+    <script src="navigation.js"></script>
+    <script>
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', (e) => {
+                const id = a.getAttribute('href');
+                if (id.length > 1) {
+                    const target = document.querySelector(id);
+                    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
