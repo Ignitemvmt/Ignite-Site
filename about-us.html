@@ -63,7 +63,6 @@ body::after {
     width: 100%; height: 100%; object-fit: cover;
     object-position: center 30%;
     filter: grayscale(0.4) sepia(0.25) contrast(1.05);
-    loading: lazy;
 }
 .hero-bg::after {
     content: ''; position: absolute; inset: 0;
@@ -181,7 +180,7 @@ section { position: relative; padding: 140px 0; }
 .founder-row { display: grid; grid-template-columns: 360px 1fr; gap: 80px; align-items: center; margin-top: 50px; }
 .founder-photo-wrap { position: relative; }
 .founder-photo-frame { position: relative; border: 3px solid var(--ink); overflow: hidden; aspect-ratio: 3/4; max-width: 360px; }
-.founder-photo-frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.5) sepia(0.2) contrast(1.05); transition: filter 0.4s ease; loading: lazy; }
+.founder-photo-frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.5) sepia(0.2) contrast(1.05); transition: filter 0.4s ease; }
 .founder-photo-frame:hover img { filter: grayscale(0.15) sepia(0.1) contrast(1.1); }
 .founder-label { position: absolute; bottom: 0; left: 0; right: 0; background: var(--ink); color: var(--paper); padding: 16px 20px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
 .founder-label-name { font-family: var(--hand); font-size: 1.7rem; color: var(--paper); line-height: 1; }
@@ -205,7 +204,7 @@ section { position: relative; padding: 140px 0; }
 
     <section class="about-hero">
         <div class="hero-bg">
-            <img src="about-hero.jpg" alt="Ignite Belize in action" />
+            <img src="about-hero.jpg" alt="Ignite Belize in action" loading="lazy" />
         </div>
         <div class="hero-content">
             <div class="container">
@@ -226,7 +225,7 @@ section { position: relative; padding: 140px 0; }
     <div class="sub-nav">
         <div class="container">
             <a href="#about-section" class="active"><span class="num">01</span>About Us</a>
-            <a href="https://ignitebelize.org/faith"><span class="num">02</span>Statement of Faith</a>
+            <a href="faith.html"><span class="num">02</span>Statement of Faith</a>
         </div>
     </div>
 
@@ -300,7 +299,7 @@ section { position: relative; padding: 140px 0; }
             <div class="founder-row">
                 <div class="founder-photo-wrap reveal">
                     <div class="founder-photo-frame">
-                        <img src="founder-photo.jpg" alt="Brent Heavener, Founder of Ignite Belize" />
+                        <img src="founder-photo.jpg" alt="Brent Heavener, Founder of Ignite Belize" loading="lazy" />
                         <div class="founder-label">
                             <span class="founder-label-name">Brent Heavener</span>
                             <span class="founder-label-role">Founder</span>
