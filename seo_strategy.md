@@ -76,3 +76,7 @@ Your SEO will improve fastest through content optimization. Here's the strategy:
   - "Are you a registered nonprofit?"
 
 **Example snippet:**
+<h2>What is Ignite Belize?</h2>
+<p>Ignite Belize is a Gen-Z Christian ministry dedicated to youth revival and discipleship in Belize. 
+We host worship nights (Burn Nights), leadership training, and everyday evangelism initiatives. 
+As a registered 501(c)(3) nonprofit, we're committed to transforming young people's faith and purpose.</p>
