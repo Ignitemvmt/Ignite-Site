@@ -97,6 +97,14 @@
             font-weight: 500;
         }
 
+        .bz-stripe {
+            display: block;
+            width: 120px;
+            height: 4px;
+            margin: 0 0 28px 0;
+            background: linear-gradient(90deg, #002868 0%, #002868 15%, #ffffff 15%, #ffffff 85%, #ce1126 85%, #ce1126 100%);
+        }
+
         /* ========== VERSE CALLOUT ========== */
         .verse-block {
             background: rgba(214, 179, 39, 0.08);
@@ -338,8 +346,9 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="container">
-                <span class="hero-tag">Prayer Campaign</span>
+                <span class="hero-tag">🇧🇿 Prayer Campaign</span>
                 <h1>40 Day Prayer For <span class="accent">Belize's Leaders</span> 2026</h1>
+                <span class="bz-stripe"></span>
                 <p class="lead">40 days. One nation. Join us in praying over Belize's leaders — one focus at a time, delivered straight to your phone or inbox each day.</p>
 
                 <!-- Verse Callout -->
@@ -413,13 +422,13 @@
       var path = window.location.pathname;
       function active(href) {
         if (!href || href === '#') return false;
-        if (href === 'index.html') return path === '/' || path === '' || /index\.html$/.test(path) || /\/$/.test(path);
+        if (href === '/') return path === '/' || path === '' || /index\.html$/.test(path);
         return path.indexOf(href.replace('.html','')) !== -1;
       }
 
       var links = [
-        { label: 'Home',      href: 'index.html' },
-        { label: 'About',     href: 'about-us.html' },
+        { label: 'Home',      href: '/' },
+        { label: 'About',     href: '/about-us.html' },
         {
           label: 'FREE Resources',
           href: '#',
@@ -450,7 +459,7 @@
       }).join('');
 
       var navHTML = '<nav id="mainNav">' +
-        '<a href="index.html" class="nav-brand">' +
+        '<a href="/" class="nav-brand">' +
           '<img src="' + LOGO + '" alt="Ignite Belize" class="nav-logo-img">' +
         '</a>' +
         '<ul class="nav-links">' + navLinkItems +
@@ -459,8 +468,8 @@
         '<button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>' +
       '</nav>' +
       '<div class="mobile-menu" id="mobileMenu">' +
-        '<a href="index.html">Home</a>' +
-        '<a href="about-us.html">About</a>' +
+        '<a href="/">Home</a>' +
+        '<a href="/about-us.html">About</a>' +
         '<a href="https://ignitebelize.org/prayer">40 Day Prayer For Belize\'s Leaders</a>' +
         '<a href="#" onclick="openVolunteerModal();return false;">Volunteer</a>' +
         '<a href="https://ignitebelize.org/donate">Donate</a>' +
@@ -476,8 +485,8 @@
             '<div class="footer-col">' +
               '<h4>// Explore</h4>' +
               '<ul>' +
-                '<li><a href="index.html">Home</a></li>' +
-                '<li><a href="about-us.html">About</a></li>' +
+                '<li><a href="/">Home</a></li>' +
+                '<li><a href="/about-us.html">About</a></li>' +
                 '<li><a href="https://ignitebelize.org/faith">Statement of Faith</a></li>' +
               '</ul>' +
             '</div>' +
@@ -498,7 +507,7 @@
           '</div>' +
           '<div class="footer-bottom">' +
             '<span>\u00A9 2026 Ignite Movement Belize</span>' +
-            '<span>Spanish Lookout, BZ</span>' +
+            '<span>🇧🇿 Spanish Lookout, BZ</span>' +
           '</div>' +
         '</div>' +
       '</footer>';
