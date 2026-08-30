@@ -15,12 +15,32 @@
   var links = [
     { label: 'Home',      href: 'index.html' },
     { label: 'About',     href: 'about-us.html' },
+    {
+      label: 'FREE Resources',
+      href: '#',
+      dropdown: [
+        { label: "40 Day Prayer For Belize's Leaders", href: 'https://ignitebelize.org/prayer' }
+      ]
+    },
     { label: 'Volunteer', href: '#', onclick: 'openVolunteerModal();return false;' },
   ];
 
-  var navLinkItems = links.map(function(l) {
+  var navLinkItems = links.map(function(l, i) {
     var ac = active(l.href) ? ' aria-current="page"' : '';
     var oc = l.onclick ? ' onclick="' + l.onclick + '"' : '';
+
+    if (l.dropdown && l.dropdown.length) {
+      var subItems = l.dropdown.map(function(d) {
+        return '<li><a href="' + d.href + '">' + d.label + '</a></li>';
+      }).join('');
+      return '<li class="nav-dropdown">' +
+        '<a href="' + l.href + '" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">' +
+          l.label + '<span class="nav-caret">&#9662;</span>' +
+        '</a>' +
+        '<ul class="nav-dropdown-menu">' + subItems + '</ul>' +
+      '</li>';
+    }
+
     return '<li><a href="' + l.href + '"' + oc + ac + '>' + l.label + '</a></li>';
   }).join('');
 
@@ -36,6 +56,7 @@
   '<div class="mobile-menu" id="mobileMenu">' +
     '<a href="index.html">Home</a>' +
     '<a href="about-us.html">About</a>' +
+    '<a href="https://ignitebelize.org/prayer">40 Day Prayer For Belize\'s Leaders</a>' +
     '<a href="#" onclick="openVolunteerModal();return false;">Volunteer</a>' +
     '<a href="https://ignitebelize.org/donate">Donate</a>' +
   '</div>';
@@ -145,7 +166,7 @@
     #mainNav.scrolled { padding: 10px 32px; background: rgba(10,8,5,0.98); }
     .nav-brand { display: flex; align-items: center; text-decoration: none; }
     .nav-logo-img { height: 40px; width: auto; display: block; object-fit: contain; }
-    .nav-links { display: flex; list-style: none; gap: 4px; margin: 0; padding: 0; }
+    .nav-links { display: flex; list-style: none; gap: 4px; margin: 0; padding: 0; align-items: center; }
     .nav-links a {
       font-family: 'JetBrains Mono','Courier New',monospace;
       font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
@@ -161,6 +182,27 @@
     }
     .nav-links a.cta::before { display: none; }
     .nav-links a.cta:hover { background: #e8c050; }
+
+    /* Dropdown */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-toggle { display: flex; align-items: center; gap: 5px; cursor: pointer; }
+    .nav-caret { font-size: 0.6rem; color: var(--nav-accent); transition: transform 0.2s ease; display: inline-block; }
+    .nav-dropdown.open .nav-caret { transform: rotate(180deg); }
+    .nav-dropdown-menu {
+      position: absolute; top: 100%; left: 0; margin-top: 10px;
+      min-width: 280px; list-style: none; padding: 8px 0; margin-left: 0;
+      background: rgba(10,8,5,0.98); border: 1px solid rgba(200,164,57,0.25);
+      opacity: 0; visibility: hidden; transform: translateY(-8px);
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    }
+    .nav-dropdown.open .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .nav-dropdown-menu li { margin: 0; }
+    .nav-dropdown-menu a {
+      padding: 12px 18px; text-transform: none; letter-spacing: 0.02em;
+      font-size: 0.82rem; white-space: nowrap;
+    }
+    .nav-dropdown-menu a::before { display: none; }
+
     .nav-toggle {
       display: none; background: none; border: none; cursor: pointer;
       width: 36px; height: 28px; flex-direction: column;
@@ -175,12 +217,12 @@
       display: flex; flex-direction: column; justify-content: center;
       align-items: center; gap: 24px;
       transform: translateY(-100%); transition: transform 0.4s cubic-bezier(0.7,0,0.3,1);
-      padding: 80px 32px;
+      padding: 80px 32px; text-align: center;
     }
     .mobile-menu.active { transform: translateY(0); }
     .mobile-menu a {
       font-family: 'Anton',Impact,sans-serif;
-      font-size: 2.8rem; text-transform: uppercase;
+      font-size: 2.2rem; text-transform: uppercase;
       color: var(--nav-text); text-decoration: none;
       letter-spacing: 0.02em; transition: color 0.2s;
     }
@@ -280,6 +322,7 @@
       .footer-inner { padding: 0 20px; }
       .volunteer-modal { padding: 32px 24px; }
       .volunteer-checkboxes { grid-template-columns: 1fr; }
+      .mobile-menu a { font-size: 1.7rem; }
     }
   `;
   document.head.appendChild(style);
@@ -307,6 +350,26 @@
       });
     });
   }
+
+  // Dropdown open/close (desktop nav)
+  document.querySelectorAll('.nav-dropdown-toggle').forEach(function(toggle) {
+    toggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      var parent = toggle.closest('.nav-dropdown');
+      var wasOpen = parent.classList.contains('open');
+      document.querySelectorAll('.nav-dropdown.open').forEach(function(d) {
+        d.classList.remove('open');
+      });
+      if (!wasOpen) parent.classList.add('open');
+    });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest || !e.target.closest('.nav-dropdown')) {
+      document.querySelectorAll('.nav-dropdown.open').forEach(function(d) {
+        d.classList.remove('open');
+      });
+    }
+  });
 
   window.openVolunteerModal = function() {
     var o = document.getElementById('volunteerOverlay');
