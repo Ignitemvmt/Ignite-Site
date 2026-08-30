@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>40 Day Prayer Push '26 — Ignite Belize</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@500;700&family=Playfair+Display:ital,wght@1,500;1,700&display=swap" rel="stylesheet">
+
+    <style>
+/* ====================================================================
+   IGNITE BELIZE — Design System v1.0
+   Postcard retro · B&W with ember-gold accent · handwritten flourishes
+==================================================================== */
+
+:root {
+    /* GROUND — aged paper postcard */
+    --paper:    #f1ece1;
+    --paper-2:  #e8e1d2;
+    --paper-3:  #ddd5c2;
+
+    /* INK — deep blacks (warm) */
+    --ink:        #14110d;
+    --ink-soft:   #2a251e;
+    --ink-dim:    #6b6356;
+    --ink-faint:  #a39a87;
+
+    /* IGNITE PALETTE */
+    --ember:        #d2511a;
+    --ember-bright: #e86b2a;
+    --gold:         #b8862a;
+    --gold-deep:    #7d5a18;
+
+    /* LINES */
+    --line:        rgba(20, 17, 13, 0.12);
+    --line-strong: rgba(20, 17, 13, 0.24);
+
+    /* TYPOGRAPHY */
+    --display:   'Big Shoulders Display', 'Impact', sans-serif;
+    --body:      'Inter', system-ui, sans-serif;
+    --mono:      'JetBrains Mono', 'Courier New', monospace;
+    --hand:      'Caveat', cursive;
+    --serif-it:  'Playfair Display', serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--body);
+    background: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Paper grain overlay */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.2 0 0 0 0 0.15 0 0 0 0 0.1 0 0 0 0.45 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* Subtle vignette */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9997;
+    background: radial-gradient(ellipse 100% 100% at center, transparent 50%, rgba(20, 17, 13, 0.08) 100%);
+}
+
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+@media (max-width: 700px) {
+    .container { padding: 0 20px; }
+}
+
+section {
+    position: relative;
+    padding: 120px 0;
+}
+
+@media (max-width: 700px) {
+    section { padding: 80px 0; }
+}
+
+/* Tag / eyebrow */
+.section-tag {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ember);
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+.section-tag::before {
+    content: '//';
+    opacity: 0.6;
+}
+
+/* Headline */
+h1 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    color: var(--ink);
+}
+h1 .accent { color: var(--ember); }
+
+/* Lead paragraph */
+p.lead {
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    max-width: 680px;
+    line-height: 1.65;
+    margin-bottom: 40px;
+}
+
+/* Verse callout with left border */
+.verse {
+    border-left: 4px solid var(--ember);
+    padding-left: 20px;
+    font-family: var(--serif-it);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-bottom: 50px;
+}
+.verse .citation {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    font-style: normal;
+    margin-top: 10px;
+}
+
+/* Topics grid */
+.topics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+.topic-card {
+    border: 2px solid var(--line-strong);
+    padding: 28px 20px;
+    background: var(--paper);
+    transition: all 0.3s ease;
+}
+.topic-card:hover {
+    background: var(--paper-2);
+    border-color: var(--ember);
+    transform: translateY(-2px);
+}
+.topic-card .days {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ember);
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+.topic-card .title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.35rem;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+}
+
+/* Signup section */
+.signup-block {
+    background: var(--paper-2);
+    border-top: 2px solid var(--line-strong);
+    padding-top: 40px;
+}
+.signup-heading {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+    color: var(--ink);
+}
+.signup-heading .accent { color: var(--ember); }
+.signup-sub {
+    font-size: 0.95rem;
+    color: var(--ink-dim);
+    margin-bottom: 28px;
+    line-height: 1.6;
+}
+
+/* Givebutter widget container */
+.widget-container {
+    max-width: 100%;
+}
+
+@media (max-width: 700px) {
+    .topics-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .topic-card {
+        padding: 24px 18px;
+    }
+    h1 {
+        margin-bottom: 16px;
+    }
+    p.lead {
+        margin-bottom: 32px;
+    }
+    section {
+        padding: 80px 0;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <section>
+        <div class="container">
+            <div class="section-tag">Ignite Belize</div>
+            <h1>40 Day Prayer <span class="accent">Push</span> '26</h1>
+            <p class="lead">40 days. One nation. Join us in praying over Belize's leaders — one focus at a time, delivered straight to your phone or inbox each day.</p>
+
+            <p class="verse">
+                "I urge that petitions, prayers, intercessions, and thanksgivings be made for all people — for kings and all who are in high positions."
+                <span class="citation">1 Timothy 2:1-2</span>
+            </p>
+
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <span class="days">Days 1–10</span>
+                    <div class="title">Spiritual Leaders</div>
+                </div>
+                <div class="topic-card">
+                    <span class="days">Days 11–20</span>
+                    <div class="title">Government Leaders</div>
+                </div>
+                <div class="topic-card">
+                    <span class="days">Days 21–30</span>
+                    <div class="title">Educational Leaders</div>
+                </div>
+                <div class="topic-card">
+                    <span class="days">Days 31–40</span>
+                    <div class="title">Family Leaders</div>
+                </div>
+            </div>
+
+            <div class="signup-block">
+                <h2 class="signup-heading">Sign up to <span class="accent">receive</span></h2>
+                <p class="signup-sub">Choose text or email — we'll send one short prayer focus each day for 40 days.</p>
+                
+                <div class="widget-container">
+                    <!-- Paste your Givebutter embed script here -->
+                    <givebutter-widget id="g6WDYB"></givebutter-widget>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
