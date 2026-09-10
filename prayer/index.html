@@ -251,6 +251,85 @@
             max-width: 100%;
         }
 
+        /* ========== PRAYER ARCHIVE SECTION ========== */
+        .archive-section {
+            padding: 0 0 80px;
+        }
+
+        .archive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 14px;
+        }
+
+        .archive-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: #fffbf4;
+            border: 2px solid #ddd5c2;
+            padding: 22px 8px;
+            text-align: center;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .archive-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #d6b327, #b8941a);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .archive-card:hover {
+            border-color: #d6b327;
+            background: rgba(214, 179, 39, 0.04);
+            transform: translateY(-4px);
+        }
+
+        .archive-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .archive-card .archive-icon {
+            font-size: 1.4rem;
+            line-height: 1;
+        }
+
+        .archive-card .archive-day {
+            font-family: 'Anton', Impact, sans-serif;
+            font-weight: 900;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: #3e3b39;
+        }
+
+        .archive-card .archive-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.62rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #b8941a;
+        }
+
+        .archive-empty {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #3e3b39;
+            opacity: 0.6;
+        }
+
         /* ========== FOOTER INJECTION POINT ========== */
         #ignite-footer-root {
             margin-top: 120px;
@@ -311,6 +390,10 @@
             .section-subtitle {
                 margin-bottom: 32px;
             }
+
+            .archive-section {
+                padding: 0 0 60px;
+            }
         }
 
         @media (max-width: 600px) {
@@ -333,6 +416,11 @@
 
             .topic-title {
                 font-size: 1.3rem;
+            }
+
+            .archive-grid {
+                grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+                gap: 10px;
             }
         }
     </style>
@@ -402,6 +490,16 @@
                 </div>
             </div>
         </section>
+
+        <!-- Prayer Archive Section -->
+        <section class="archive-section">
+            <div class="container">
+                <h2 class="section-title">Look Back <span class="accent">Day by Day</span></h2>
+                <p class="section-subtitle">Tap any day below to open that day's prayer focus.</p>
+
+                <div id="prayer-grid" class="archive-grid"></div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer injection point -->
@@ -409,6 +507,52 @@
 
     <!-- Modal injection point -->
     <div id="ignite-modal-root"></div>
+
+    <!-- Prayer Archive loader -->
+    <script>
+    (function() {
+        // Campaign start date — day 1 = this date. Update if your start date ever changes.
+        var PRAYER_CAMPAIGN_START = new Date('2026-09-01T00:00:00');
+
+        function formatPrayerDate(dayNumber) {
+            var d = new Date(PRAYER_CAMPAIGN_START);
+            d.setDate(d.getDate() + (dayNumber - 1));
+            return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        }
+
+        async function loadPrayerArchive() {
+            var grid = document.getElementById('prayer-grid');
+            try {
+                // Reads the list of day numbers from prayers.json — add a number there each new day.
+                var res = await fetch('prayers/prayers.json?_=' + Date.now());
+                var dayNumbers = await res.json();
+
+                var days = dayNumbers
+                    .map(function(dayNum) {
+                        return {
+                            day: dayNum,
+                            date: formatPrayerDate(dayNum),
+                            file: 'day-' + String(dayNum).padStart(2, '0') + '.pdf'
+                        };
+                    })
+                    .sort(function(a, b) { return b.day - a.day; }); // newest day first
+
+                grid.innerHTML = days.map(function(d) {
+                    return '<a href="prayers/' + d.file + '" target="_blank" rel="noopener" class="archive-card">' +
+                        '<span class="archive-icon">📄</span>' +
+                        '<span class="archive-day">Day ' + d.day + '</span>' +
+                        '<span class="archive-date">' + d.date + '</span>' +
+                    '</a>';
+                }).join('');
+            } catch (e) {
+                grid.innerHTML = '<p class="archive-empty">Archive loading soon — check back shortly.</p>';
+                console.error('Prayer archive failed to load:', e);
+            }
+        }
+
+        loadPrayerArchive();
+    })();
+    </script>
 
     <!-- Shared Navigation & Footer System (inlined — the CDN link was 404ing) -->
     <script>
