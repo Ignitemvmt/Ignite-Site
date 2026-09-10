@@ -216,6 +216,33 @@
             line-height: 1.2;
         }
 
+        .topic-hint {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            letter-spacing: 0.05em;
+            color: #b8941a;
+            margin-top: 14px;
+            cursor: pointer;
+        }
+
+        .topic-card:has(.topic-archive:not(:empty)) {
+            cursor: pointer;
+        }
+
+        .topic-archive {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 10px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, margin-top 0.35s ease;
+        }
+
+        .topic-card.open .topic-archive {
+            max-height: 600px;
+            margin-top: 18px;
+        }
+
         /* ========== SIGNUP SECTION ========== */
         .signup-section {
             padding: 80px 0;
@@ -251,17 +278,7 @@
             max-width: 100%;
         }
 
-        /* ========== PRAYER ARCHIVE SECTION ========== */
-        .archive-section {
-            padding: 0 0 80px;
-        }
-
-        .archive-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-            gap: 14px;
-        }
-
+        /* ========== PRAYER ARCHIVE (nested inside each topic card) ========== */
         .archive-card {
             display: flex;
             flex-direction: column;
@@ -321,13 +338,6 @@
             letter-spacing: 0.08em;
             text-transform: uppercase;
             color: #b8941a;
-        }
-
-        .archive-empty {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: #3e3b39;
-            opacity: 0.6;
         }
 
         /* ========== FOOTER INJECTION POINT ========== */
@@ -391,9 +401,6 @@
                 margin-bottom: 32px;
             }
 
-            .archive-section {
-                padding: 0 0 60px;
-            }
         }
 
         @media (max-width: 600px) {
@@ -418,9 +425,9 @@
                 font-size: 1.3rem;
             }
 
-            .archive-grid {
-                grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-                gap: 10px;
+            .topic-archive {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+                gap: 8px;
             }
         }
     </style>
@@ -456,21 +463,29 @@
                 <p class="section-subtitle">We're focusing on four key areas of leadership across Belize — one group at a time for 10 days each.</p>
 
                 <div class="topics-grid">
-                    <div class="topic-card">
+                    <div class="topic-card" data-range-start="1" data-range-end="10">
                         <span class="topic-days">Days 1–10</span>
                         <div class="topic-title">Spiritual Leaders</div>
+                        <p class="topic-hint">Click below to see previous days ▾</p>
+                        <div class="topic-archive"></div>
                     </div>
-                    <div class="topic-card">
+                    <div class="topic-card" data-range-start="11" data-range-end="20">
                         <span class="topic-days">Days 11–20</span>
                         <div class="topic-title">Government Leaders</div>
+                        <p class="topic-hint">Click below to see previous days ▾</p>
+                        <div class="topic-archive"></div>
                     </div>
-                    <div class="topic-card">
+                    <div class="topic-card" data-range-start="21" data-range-end="30">
                         <span class="topic-days">Days 21–30</span>
                         <div class="topic-title">Educational Leaders</div>
+                        <p class="topic-hint">Click below to see previous days ▾</p>
+                        <div class="topic-archive"></div>
                     </div>
-                    <div class="topic-card">
+                    <div class="topic-card" data-range-start="31" data-range-end="40">
                         <span class="topic-days">Days 31–40</span>
                         <div class="topic-title">Family Leaders</div>
+                        <p class="topic-hint">Click below to see previous days ▾</p>
+                        <div class="topic-archive"></div>
                     </div>
                 </div>
             </div>
@@ -491,15 +506,6 @@
             </div>
         </section>
 
-        <!-- Prayer Archive Section -->
-        <section class="archive-section">
-            <div class="container">
-                <h2 class="section-title">Look Back <span class="accent">Day by Day</span></h2>
-                <p class="section-subtitle">Tap any day below to open that day's prayer focus.</p>
-
-                <div id="prayer-grid" class="archive-grid"></div>
-            </div>
-        </section>
     </main>
 
     <!-- Footer injection point -->
@@ -521,13 +527,24 @@
         }
 
         async function loadPrayerArchive() {
-            var grid = document.getElementById('prayer-grid');
+            var cards = document.querySelectorAll('.topic-card');
+            var dayNumbers = [];
             try {
                 // Reads the list of day numbers from prayers.json — add a number there each new day.
                 var res = await fetch('prayers/prayers.json?_=' + Date.now());
-                var dayNumbers = await res.json();
+                dayNumbers = await res.json();
+            } catch (e) {
+                console.error('Prayer archive failed to load:', e);
+            }
 
-                var days = dayNumbers
+            cards.forEach(function(card) {
+                var start = parseInt(card.dataset.rangeStart, 10);
+                var end = parseInt(card.dataset.rangeEnd, 10);
+                var hint = card.querySelector('.topic-hint');
+                var panel = card.querySelector('.topic-archive');
+
+                var daysInRange = dayNumbers
+                    .filter(function(d) { return d >= start && d <= end; })
                     .map(function(dayNum) {
                         return {
                             day: dayNum,
@@ -537,17 +554,25 @@
                     })
                     .sort(function(a, b) { return b.day - a.day; }); // newest day first
 
-                grid.innerHTML = days.map(function(d) {
-                    return '<a href="prayers/' + d.file + '" target="_blank" rel="noopener" class="archive-card">' +
+                if (!daysInRange.length) {
+                    // No days uploaded yet for this range — no hint, no click behavior.
+                    hint.style.display = 'none';
+                    return;
+                }
+
+                panel.innerHTML = daysInRange.map(function(d) {
+                    return '<a href="prayers/' + d.file + '" target="_blank" rel="noopener" class="archive-card" onclick="event.stopPropagation()">' +
                         '<span class="archive-icon">📄</span>' +
                         '<span class="archive-day">Day ' + d.day + '</span>' +
                         '<span class="archive-date">' + d.date + '</span>' +
                     '</a>';
                 }).join('');
-            } catch (e) {
-                grid.innerHTML = '<p class="archive-empty">Archive loading soon — check back shortly.</p>';
-                console.error('Prayer archive failed to load:', e);
-            }
+
+                card.addEventListener('click', function() {
+                    var isOpen = card.classList.toggle('open');
+                    hint.textContent = isOpen ? 'Hide previous days ▴' : 'Click below to see previous days ▾';
+                });
+            });
         }
 
         loadPrayerArchive();
