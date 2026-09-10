@@ -216,6 +216,20 @@
             line-height: 1.2;
         }
 
+        .archive-callout {
+            font-family: 'Anton', Impact, sans-serif;
+            font-size: clamp(1.3rem, 3.5vw, 1.7rem);
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            color: #3e3b39;
+            background: rgba(214, 179, 39, 0.12);
+            border: 2px solid #d6b327;
+            border-radius: 6px;
+            padding: 20px 24px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
         .topic-hint {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.68rem;
@@ -429,6 +443,11 @@
                 grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
                 gap: 8px;
             }
+
+            .archive-callout {
+                padding: 16px 18px;
+                margin-bottom: 28px;
+            }
         }
     </style>
 </head>
@@ -461,6 +480,10 @@
             <div class="container">
                 <h2 class="section-title">Prayer <span class="accent">Topics</span></h2>
                 <p class="section-subtitle">We're focusing on four key areas of leadership across Belize — one group at a time for 10 days each.</p>
+
+                <div class="archive-callout">
+                    👇 Tap a topic below to see previous days' prayers
+                </div>
 
                 <div class="topics-grid">
                     <div class="topic-card" data-range-start="1" data-range-end="10">
