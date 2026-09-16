@@ -704,14 +704,9 @@
                     <h2 class="signup-heading">Count me <span class="accent">in</span></h2>
                     <p class="signup-subtext">Let us know you're joining the fast — we'll send a short prep guide before Sep 21.</p>
 
-                    <form id="fastFormElement" class="fast-signup-form">
-                        <input type="text" id="fast-name" name="name" placeholder="Full Name" class="fast-input" required>
-                        <input type="email" id="fast-email" name="email" placeholder="Email Address" class="fast-input" required>
-                        <input type="tel" id="fast-phone" name="phone" placeholder="Phone Number (optional)" class="fast-input">
-                        <button type="submit" class="fast-submit">Count Me In</button>
-                    </form>
-                    <div class="fast-success" id="fast-success">
-                        <strong>You're in!</strong> We'll be in touch with details before the fast begins.
+                    <div class="widget-container">
+                        <!-- Givebutter Widget Embed -->
+                        <givebutter-widget id="pXv5VN"></givebutter-widget>
                     </div>
                 </div>
             </div>
@@ -831,32 +826,6 @@
         } else if (new Date() < FAST_DEFAULT_CUTOFF) {
             showPanel('fast');
         }
-
-        document.addEventListener('submit', async function(e) {
-            if (!e.target || e.target.id !== 'fastFormElement') return;
-            e.preventDefault();
-            var name  = document.getElementById('fast-name').value;
-            var email = document.getElementById('fast-email').value;
-            var phone = document.getElementById('fast-phone').value;
-            try {
-                var fd = new FormData();
-                fd.append('name', name);
-                fd.append('email', email);
-                fd.append('phone', phone);
-                fd.append('_subject', '24hr Fast Sign-Up — Sep 21-22');
-                fd.append('_captcha', 'false');
-                var res = await fetch('https://formsubmit.co/ajax/brent@ignitebelize.org', { method: 'POST', body: fd });
-                if (res.ok) {
-                    document.getElementById('fastFormElement').style.display = 'none';
-                    document.getElementById('fast-success').classList.add('show');
-                } else {
-                    alert('There was an error. Please try again or email brent@ignitebelize.org directly.');
-                }
-            } catch (err) {
-                console.error(err);
-                alert('There was an error. Please email brent@ignitebelize.org directly.');
-            }
-        });
     })();
     </script>
 
