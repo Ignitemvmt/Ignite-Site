@@ -820,7 +820,17 @@
             });
         });
 
-        if (window.location.hash === '#fast') showPanel('fast');
+        // Default to the Fast tab through the end of the fast (Sep 22, 2026),
+        // then default back to the Prayer tab automatically. An explicit
+        // #fast or #prayer in the URL always wins over this default.
+        var FAST_DEFAULT_CUTOFF = new Date('2026-09-23T00:00:00');
+        if (window.location.hash === '#fast') {
+            showPanel('fast');
+        } else if (window.location.hash === '#prayer') {
+            showPanel('prayer');
+        } else if (new Date() < FAST_DEFAULT_CUTOFF) {
+            showPanel('fast');
+        }
 
         document.addEventListener('submit', async function(e) {
             if (!e.target || e.target.id !== 'fastFormElement') return;
