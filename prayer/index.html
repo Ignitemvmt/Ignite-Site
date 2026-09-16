@@ -449,6 +449,125 @@
                 margin-bottom: 28px;
             }
         }
+
+        /* ========== CAMPAIGN TOGGLE ========== */
+        .campaign-toggle-wrap {
+            padding: 32px 0 0;
+        }
+
+        .campaign-toggle {
+            display: inline-flex;
+            background: #f2ecdd;
+            border: 2px solid #ddd5c2;
+            border-radius: 999px;
+            padding: 4px;
+            gap: 4px;
+        }
+
+        .campaign-toggle-btn {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #3e3b39;
+            background: transparent;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .campaign-toggle-btn.active {
+            background: linear-gradient(45deg, #d6b327, #b8941a);
+            color: #fffbf4;
+        }
+
+        .campaign-panel {
+            display: none;
+        }
+
+        .campaign-panel.active {
+            display: block;
+        }
+
+        /* ========== FAST VERSE GRID ========== */
+        .verse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 64px;
+        }
+
+        .verse-grid .verse-block {
+            margin-bottom: 0;
+            max-width: none;
+        }
+
+        /* ========== FAST SIGNUP FORM ========== */
+        .fast-signup-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 480px;
+        }
+
+        .fast-input {
+            background: #fffbf4;
+            border: 2px solid #ddd5c2;
+            color: #3e3b39;
+            padding: 14px 16px;
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            width: 100%;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+
+        .fast-input:focus {
+            border-color: #d6b327;
+        }
+
+        .fast-submit {
+            background: linear-gradient(45deg, #d6b327, #b8941a);
+            color: #fffbf4;
+            border: none;
+            padding: 16px;
+            font-family: 'Anton', Impact, sans-serif;
+            font-size: 1.05rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .fast-submit:hover {
+            opacity: 0.9;
+        }
+
+        .fast-success {
+            display: none;
+            padding: 20px 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #b8941a;
+        }
+
+        .fast-success.show {
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .campaign-toggle {
+                width: 100%;
+            }
+            .campaign-toggle-btn {
+                flex: 1;
+                padding: 12px 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -457,6 +576,17 @@
     <div id="ignite-nav-root"></div>
 
     <main>
+        <!-- Campaign Toggle -->
+        <div class="campaign-toggle-wrap">
+            <div class="container">
+                <div class="campaign-toggle" role="tablist">
+                    <button type="button" class="campaign-toggle-btn active" data-panel="prayer" role="tab" aria-selected="true">40-Day Prayer</button>
+                    <button type="button" class="campaign-toggle-btn" data-panel="fast" role="tab" aria-selected="false">Call to Fast</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="panel-prayer" class="campaign-panel active">
         <!-- Hero Section -->
         <section class="hero">
             <div class="container">
@@ -528,6 +658,66 @@
                 </div>
             </div>
         </section>
+        </div>
+        <!-- /panel-prayer -->
+
+        <div id="panel-fast" class="campaign-panel">
+        <!-- Fast Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <span class="hero-tag">🕎 Day of Atonement</span>
+                <h1>A Call To <span class="accent">Fast</span></h1>
+                <span class="bz-stripe"></span>
+                <p class="lead">Prayer, fasting, and repentance to seek Yahweh's mercy for Belize — one nation, set apart for 24 hours.</p>
+
+                <div class="archive-callout">
+                    6PM SEP 21 – 6PM SEP 22 · DAY OF ATONEMENT
+                </div>
+
+                <div class="verse-grid">
+                    <div class="verse-block">
+                        <div class="verse-text">"Though your sins be like scarlet, they will be white as snow. Though they be red like crimson, they will become like wool."</div>
+                        <div class="verse-citation">Isaiah 1:18</div>
+                    </div>
+                    <div class="verse-block">
+                        <div class="verse-text">"It is to be a statute to you forever, that in the seventh month, on the tenth day of the month, you are to afflict your souls&hellip; for on this day atonement will be made for you. From all your sins you will be clean before Yahweh."</div>
+                        <div class="verse-citation">Leviticus 16:29-30</div>
+                    </div>
+                    <div class="verse-block">
+                        <div class="verse-text">"Turn to Me with all your heart, with fasting, weeping, and lamenting. Rend your heart, not your garments, and turn to Yahweh your God."</div>
+                        <div class="verse-citation">Joel 2:12-13</div>
+                    </div>
+                    <div class="verse-block">
+                        <div class="verse-text">"Blow the shofar in Zion, sanctify a fast; proclaim an assembly. Gather the people; sanctify the congregation."</div>
+                        <div class="verse-citation">Joel 2:15-16</div>
+                    </div>
+                </div>
+
+                <p class="lead" style="font-style: italic; font-size: 1.3rem; text-align: center; max-width: 100%;">Repentance is the door to a move of God.</p>
+            </div>
+        </section>
+
+        <!-- Fast Signup Section -->
+        <section class="signup-section" style="margin-top: 0;">
+            <div class="container">
+                <div class="signup-content">
+                    <h2 class="signup-heading">Count me <span class="accent">in</span></h2>
+                    <p class="signup-subtext">Let us know you're joining the fast — we'll send a short prep guide before Sep 21.</p>
+
+                    <form id="fastFormElement" class="fast-signup-form">
+                        <input type="text" id="fast-name" name="name" placeholder="Full Name" class="fast-input" required>
+                        <input type="email" id="fast-email" name="email" placeholder="Email Address" class="fast-input" required>
+                        <input type="tel" id="fast-phone" name="phone" placeholder="Phone Number (optional)" class="fast-input">
+                        <button type="submit" class="fast-submit">Count Me In</button>
+                    </form>
+                    <div class="fast-success" id="fast-success">
+                        <strong>You're in!</strong> We'll be in touch with details before the fast begins.
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+        <!-- /panel-fast -->
 
     </main>
 
@@ -602,6 +792,64 @@
     })();
     </script>
 
+    <!-- Campaign toggle + Fast signup -->
+    <script>
+    (function() {
+        var toggleBtns = document.querySelectorAll('.campaign-toggle-btn');
+        var panels = {
+            prayer: document.getElementById('panel-prayer'),
+            fast: document.getElementById('panel-fast')
+        };
+
+        function showPanel(name) {
+            if (!panels[name]) return;
+            Object.keys(panels).forEach(function(key) {
+                panels[key].classList.toggle('active', key === name);
+            });
+            toggleBtns.forEach(function(btn) {
+                var isActive = btn.dataset.panel === name;
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-selected', isActive);
+            });
+        }
+
+        toggleBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                showPanel(btn.dataset.panel);
+                history.replaceState(null, '', btn.dataset.panel === 'fast' ? '#fast' : '#prayer');
+            });
+        });
+
+        if (window.location.hash === '#fast') showPanel('fast');
+
+        document.addEventListener('submit', async function(e) {
+            if (!e.target || e.target.id !== 'fastFormElement') return;
+            e.preventDefault();
+            var name  = document.getElementById('fast-name').value;
+            var email = document.getElementById('fast-email').value;
+            var phone = document.getElementById('fast-phone').value;
+            try {
+                var fd = new FormData();
+                fd.append('name', name);
+                fd.append('email', email);
+                fd.append('phone', phone);
+                fd.append('_subject', '24hr Fast Sign-Up — Sep 21-22');
+                fd.append('_captcha', 'false');
+                var res = await fetch('https://formsubmit.co/ajax/brent@ignitebelize.org', { method: 'POST', body: fd });
+                if (res.ok) {
+                    document.getElementById('fastFormElement').style.display = 'none';
+                    document.getElementById('fast-success').classList.add('show');
+                } else {
+                    alert('There was an error. Please try again or email brent@ignitebelize.org directly.');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('There was an error. Please email brent@ignitebelize.org directly.');
+            }
+        });
+    })();
+    </script>
+
     <!-- Shared Navigation & Footer System (inlined — the CDN link was 404ing) -->
     <script>
     /**
@@ -625,7 +873,8 @@
           label: 'FREE Resources',
           href: '#',
           dropdown: [
-            { label: "40 Day Prayer For Belize's Leaders", href: 'https://ignitebelize.org/prayer' }
+            { label: "40 Day Prayer For Belize's Leaders", href: 'https://ignitebelize.org/prayer' },
+            { label: "Call to Fast (Sep 21-22)", href: 'https://ignitebelize.org/prayer#fast' }
           ]
         },
         { label: 'Volunteer', href: '#', onclick: 'openVolunteerModal();return false;' },
@@ -663,6 +912,7 @@
         '<a href="/">Home</a>' +
         '<a href="/about-us.html">About</a>' +
         '<a href="https://ignitebelize.org/prayer">40 Day Prayer For Belize\'s Leaders</a>' +
+        '<a href="https://ignitebelize.org/prayer#fast">Call to Fast (Sep 21-22)</a>' +
         '<a href="#" onclick="openVolunteerModal();return false;">Volunteer</a>' +
         '<a href="https://ignitebelize.org/donate">Donate</a>' +
       '</div>';
