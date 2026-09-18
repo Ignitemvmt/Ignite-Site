@@ -568,6 +568,26 @@
                 padding: 12px 10px;
             }
         }
+
+        /* ========== FAST FLYER ========== */
+        .fast-flyer-intro {
+            text-align: center;
+            font-style: italic;
+            font-size: 1.15rem;
+            margin-bottom: 24px;
+        }
+
+        .fast-flyer {
+            max-width: 340px;
+            margin: 0 auto 64px;
+            border: 2px solid #ddd5c2;
+        }
+
+        .fast-flyer img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -694,6 +714,11 @@
                 </div>
 
                 <p class="lead" style="font-style: italic; font-size: 1.3rem; text-align: center; max-width: 100%;">Repentance is the door to a move of God.</p>
+
+                <p class="fast-flyer-intro">Join us for the Day of Atonement worship night.</p>
+                <div class="fast-flyer">
+                    <img src="flyers/day-of-atonement.jpg" alt="Day of Atonement — Worship + Repentance Night, Sep 21 at 7pm, Lower Roof Countryside Park, Spanish Lookout" loading="lazy">
+                </div>
             </div>
         </section>
 
@@ -890,8 +915,13 @@
       '<div class="mobile-menu" id="mobileMenu">' +
         '<a href="/">Home</a>' +
         '<a href="/about-us.html">About</a>' +
-        '<a href="https://ignitebelize.org/prayer">40 Day Prayer For Belize\'s Leaders</a>' +
-        '<a href="https://ignitebelize.org/prayer#fast">Call to Fast (Sep 21-22)</a>' +
+        '<div class="mobile-dropdown" id="mobileResourcesDropdown">' +
+          '<button type="button" class="mobile-dropdown-toggle" id="mobileResourcesToggle">FREE Resources<span class="nav-caret">&#9662;</span></button>' +
+          '<div class="mobile-dropdown-menu">' +
+            '<a href="https://ignitebelize.org/prayer">40 Day Prayer For Belize\'s Leaders</a>' +
+            '<a href="https://ignitebelize.org/prayer#fast">Call to Fast (Sep 21-22)</a>' +
+          '</div>' +
+        '</div>' +
         '<a href="#" onclick="openVolunteerModal();return false;">Volunteer</a>' +
         '<a href="https://ignitebelize.org/donate">Donate</a>' +
       '</div>';
@@ -1062,6 +1092,50 @@
           letter-spacing: 0.02em; transition: color 0.2s;
         }
         .mobile-menu a:hover { color: var(--nav-accent); }
+        .mobile-dropdown {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 14px;
+        }
+        .mobile-dropdown-toggle {
+          background: none;
+          border: none;
+          font-family: 'Anton',Impact,sans-serif;
+          font-size: 2.2rem;
+          text-transform: uppercase;
+          color: var(--nav-text);
+          letter-spacing: 0.02em;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          transition: color 0.2s;
+        }
+        .mobile-dropdown-toggle:hover { color: var(--nav-accent); }
+        .mobile-dropdown-toggle .nav-caret {
+          font-size: 1.1rem;
+          transition: transform 0.2s ease;
+        }
+        .mobile-dropdown.open .mobile-dropdown-toggle .nav-caret { transform: rotate(180deg); }
+        .mobile-dropdown-menu {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 12px;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease;
+        }
+        .mobile-dropdown.open .mobile-dropdown-menu { max-height: 300px; }
+        .mobile-dropdown-menu a {
+          font-family: 'JetBrains Mono','Courier New',monospace;
+          font-size: 0.9rem;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: var(--nav-text-dim);
+        }
+        .mobile-dropdown-menu a:hover { color: var(--nav-accent); }
         .site-footer {
           background: #0a0805; color: #f1ece1;
           padding: 80px 0 40px; border-top: 1px solid rgba(200,164,57,0.2);
@@ -1183,6 +1257,13 @@
             mm.classList.remove('active');
             document.body.style.overflow = '';
           });
+        });
+      }
+
+      var mobileResToggle = document.getElementById('mobileResourcesToggle');
+      if (mobileResToggle) {
+        mobileResToggle.addEventListener('click', function() {
+          document.getElementById('mobileResourcesDropdown').classList.toggle('open');
         });
       }
 
