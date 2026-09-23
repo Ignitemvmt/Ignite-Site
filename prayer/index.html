@@ -162,6 +162,18 @@
             margin-bottom: 0;
         }
 
+        @media (min-width: 769px) and (max-width: 1099px) {
+            .topics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1100px) {
+            .topics-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
         .topic-card {
             background: #fffbf4;
             border: 2px solid #ddd5c2;
@@ -268,6 +280,8 @@
 
         .signup-content {
             max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .signup-heading {
@@ -283,7 +297,7 @@
         .signup-subtext {
             font-size: 1.05rem;
             color: #3e3b39;
-            margin-bottom: 40px;
+            margin: 0 auto 40px;
             line-height: 1.7;
             max-width: 600px;
         }
@@ -625,6 +639,21 @@
             </div>
         </section>
 
+        <!-- Signup Section -->
+        <section class="signup-section">
+            <div class="container">
+                <div class="signup-content">
+                    <h2 class="signup-heading">Sign up to <span class="accent">receive</span></h2>
+                    <p class="signup-subtext">Choose text or email — we'll send one short prayer focus each day for 40 days.</p>
+
+                    <div class="widget-container">
+                        <!-- Givebutter Widget Embed -->
+                        <givebutter-widget id="g6WDYB"></givebutter-widget>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Topics Section -->
         <section class="topics-section">
             <div class="container">
@@ -659,21 +688,6 @@
                         <div class="topic-title">Family Leaders</div>
                         <p class="topic-hint">Click below to see previous days ▾</p>
                         <div class="topic-archive"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Signup Section -->
-        <section class="signup-section">
-            <div class="container">
-                <div class="signup-content">
-                    <h2 class="signup-heading">Sign up to <span class="accent">receive</span></h2>
-                    <p class="signup-subtext">Choose text or email — we'll send one short prayer focus each day for 40 days.</p>
-
-                    <div class="widget-container">
-                        <!-- Givebutter Widget Embed -->
-                        <givebutter-widget id="g6WDYB"></givebutter-widget>
                     </div>
                 </div>
             </div>
