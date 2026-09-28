@@ -796,7 +796,7 @@
                         return {
                             day: dayNum,
                             date: formatPrayerDate(dayNum),
-                            file: 'day-' + String(dayNum).padStart(2, '0') + '.pdf'
+                            file: 'day-' + String(dayNum).padStart(2, '0') + (dayNum <= 10 ? '.pdf' : '.png')
                         };
                     })
                     .sort(function(a, b) { return b.day - a.day; }); // newest day first
@@ -808,8 +808,9 @@
                 }
 
                 panel.innerHTML = daysInRange.map(function(d) {
+                    var icon = d.day <= 10 ? '📄' : '🖼️';
                     return '<a href="prayers/' + d.file + '" target="_blank" rel="noopener" class="archive-card" onclick="event.stopPropagation()">' +
-                        '<span class="archive-icon">📄</span>' +
+                        '<span class="archive-icon">' + icon + '</span>' +
                         '<span class="archive-day">Day ' + d.day + '</span>' +
                         '<span class="archive-date">' + d.date + '</span>' +
                     '</a>';
