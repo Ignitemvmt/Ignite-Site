@@ -773,6 +773,28 @@
             return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
         }
 
+        // For days that aren't PDFs (11+), the actual photo might be .png, .jpg, or .jpeg —
+        // this checks which one actually exists so you don't have to keep the extension consistent.
+        var extensionCache = {};
+        async function resolveImageExtension(dayNum) {
+            var key = String(dayNum);
+            if (extensionCache[key]) return extensionCache[key];
+            var candidates = ['png', 'jpg', 'jpeg'];
+            for (var i = 0; i < candidates.length; i++) {
+                var ext = candidates[i];
+                var path = 'prayers/day-' + String(dayNum).padStart(2, '0') + '.' + ext;
+                try {
+                    var res = await fetch(path, { method: 'HEAD' });
+                    if (res.ok) {
+                        extensionCache[key] = ext;
+                        return ext;
+                    }
+                } catch (e) { /* try next extension */ }
+            }
+            extensionCache[key] = 'png'; // fallback guess if none matched
+            return 'png';
+        }
+
         async function loadPrayerArchive() {
             var cards = document.querySelectorAll('.topic-card');
             var dayNumbers = [];
@@ -784,27 +806,30 @@
                 console.error('Prayer archive failed to load:', e);
             }
 
-            cards.forEach(function(card) {
+            for (var c = 0; c < cards.length; c++) {
+                var card = cards[c];
                 var start = parseInt(card.dataset.rangeStart, 10);
                 var end = parseInt(card.dataset.rangeEnd, 10);
                 var hint = card.querySelector('.topic-hint');
                 var panel = card.querySelector('.topic-archive');
 
-                var daysInRange = dayNumbers
-                    .filter(function(d) { return d >= start && d <= end; })
-                    .map(function(dayNum) {
-                        return {
-                            day: dayNum,
-                            date: formatPrayerDate(dayNum),
-                            file: 'day-' + String(dayNum).padStart(2, '0') + (dayNum <= 10 ? '.pdf' : '.png')
-                        };
-                    })
-                    .sort(function(a, b) { return b.day - a.day; }); // newest day first
+                var matchingDays = dayNumbers.filter(function(d) { return d >= start && d <= end; });
+
+                var daysInRange = await Promise.all(matchingDays.map(async function(dayNum) {
+                    var ext = dayNum <= 10 ? 'pdf' : await resolveImageExtension(dayNum);
+                    return {
+                        day: dayNum,
+                        date: formatPrayerDate(dayNum),
+                        file: 'day-' + String(dayNum).padStart(2, '0') + '.' + ext
+                    };
+                }));
+
+                daysInRange.sort(function(a, b) { return a.day - b.day; }); // day 1 first
 
                 if (!daysInRange.length) {
                     // No days uploaded yet for this range — no hint, no click behavior.
                     hint.style.display = 'none';
-                    return;
+                    continue;
                 }
 
                 panel.innerHTML = daysInRange.map(function(d) {
@@ -820,7 +845,7 @@
                     var isOpen = card.classList.toggle('open');
                     hint.textContent = isOpen ? 'Hide previous days ▴' : 'Click below to see previous days ▾';
                 });
-            });
+            }
         }
 
         loadPrayerArchive();
